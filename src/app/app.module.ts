@@ -9,6 +9,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { FarmerHomeComponent } from './components/farmer-home/farmer-home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     LandingPageComponent,
     FarmerHomeComponent,
     AdminComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ProfileComponent,
+    ProfileUpdateComponent
   ],
   imports: [
     BrowserModule,

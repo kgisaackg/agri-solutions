@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components{
+    
+    li>a:hover{
+        @apply  bg-cust-green-200 text-white;
+    }
+
+    li>a:focus{
+        @apply bg-cust-green-200
+    }
+}
