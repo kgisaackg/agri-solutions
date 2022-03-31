@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,12 +9,27 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  navigate(){
+  roles = [
+    { name: "Farmer" },
+    { name: "Farmer Experts"},
+    { name: "Financial Advisor"}
+  ]
+
+  selectedOption = "";
+
+  signInForm = this.formBuilder.group({
+    emailAddress: ['', Validators.required],
+    password: ['', Validators.required],
+    role: [this.roles[3], Validators.required]
+  })
+
+  onSubmit(){
+    console.log(this.signInForm.value);
     this.router.navigateByUrl("/farmer-home");
   }
 }
