@@ -12,40 +12,50 @@
         <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
           <p class="text-2xl">Welcome to AgriSolutions</p>
           <p class="my-5 text-xl">Sign In</p>
-        
-          <div class="mb-2 text-center text-red-500">
-            *Invalid 
+          <div class="mb-2 text-red-500">
+            {{errorMsg}} 
            </div>
+         
 
           <!-- Email input -->
           <div class="">
               <input
                 type="text"
-                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
+                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
                 placeholder="Email address"
                 formControlName="emailAddress"
               />
             </div>
-            <div class="mb-2 text-red-500">
-              *Invalid 
-             </div>
+            <div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" 
+              class="mb-2 text-red-500">
+              <div *ngIf="emailAddress?.errors?.['required']">
+                *Email is required.
+              </div>
+              <div *ngIf="emailAddress?.errors?.['email']">
+                *Email is invalid.
+              </div>
+           </div>
+            
 
           <!-- Password input -->
           <div class="mt-6">
             <input
               type="password"
-               class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
+               class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
               placeholder="Password"
               formControlName="password"
             />
           </div>
-          <div class="text-red-500">
-            *Invalid 
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
+              class="mb-2 text-red-500">
+              <div *ngIf="password?.errors?.['required']">
+                *Password is required.
+              </div>
            </div>
 
           <!--Select role-->
           <div class="flex justify-center">
-              <div class="my-6 w-full">
+              <div class="mt-6 w-full">
                 <select formControlName="role" class="form-select appearance-none
                   block
                   w-full
@@ -70,12 +80,19 @@
                 </select>
               </div>
           </div>
+          <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" 
+              class="mb-2 text-red-500">
+              <div *ngIf="role?.errors?.['required']">
+                *Role is required.
+              </div>
+           </div>
 
           <!-- Submit button -->
           <button
             type="submit"
-            class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
+            class=" px-7 mt-6 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
             [disabled]="!signInForm.valid"
+            [ngClass]="!signInForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
           >
             Sign in
           </button>

@@ -9,50 +9,85 @@
         />
       </div>
       <div class="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
-        <form>
+        <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
           <p class="text-2xl">Welcome to AgriSolutions</p>
           <p class="my-5 text-xl">Sign Up</p>
+          <div class="mb-2 text-red-500">
+            {{errorMsg}} 
+           </div>
          
 
             <div class="flex justify-between items-center gap-4">
-                <div class="mb-6">
+                <div class="mt-6">
                     <input
                       type="text"
-                      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"                      placeholder="Firstname"
+                      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
+                      placeholder="Firstname"
+                      formControlName="firstname"
                     />
+                    <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="mb-2 text-red-500">
+                      <small *ngIf="firstname?.errors?.['required']"> *Name is required.</small>
+                      <small *ngIf="firstname?.errors?.['pattern']"> *Name  must be letters only.</small>
+                      <small *ngIf="firstname?.errors?.['minlength']"> *Name must have more than 3 letters.</small>
+                    </div>
+           
                   </div>
-                  <div class="mb-6">
+                  <div class="mt-6">                      
                     <input
                       type="text"
-                      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"                      placeholder="Lastname"
+                      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
+                      placeholder="Lastname"
+                      formControlName="lastname"
                     />
+                    
+                    <div *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)" class="mb-2 text-red-500">
+                      <small *ngIf="lastname?.errors?.['required']"> *Name is required.</small>
+                      <small *ngIf="lastname?.errors?.['pattern']"> *Name  must be letters only.</small>
+                      <small *ngIf="lastname?.errors?.['minlength']"> *Name must have more than 3 letters.</small>
+                    </div>
                   </div>
              </div>
+
              <!-- Phone Numbers -->
-             <div class="mb-6">
+             <div class="mt-6">
                 <input
                   type="text"
-                  class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
+                  class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
                   placeholder="Phone number"
+                  formControlName="phoneNumber"
                 />
               </div>
-          
+              <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="mb-2 text-red-500">
+                <small *ngIf="phoneNumber?.errors?.['required']">*Phone number is required</small>
+                <small *ngIf="phoneNumber?.errors?.['pattern']">*Phone number is incorrect</small>
+              </div>
+     
             
 
         
-          <!-- Email input -->
-          <div class="mb-6">
+          <!-- Email input --> 
+          <div class="mt-6">
               <input
                 type="text"
-                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
+                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
                 placeholder="Email address"
+                formControlName="emailAddress"
               />
             </div>
+            <div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" 
+              class="mb-2 text-red-500">
+              <small *ngIf="emailAddress?.errors?.['required']">
+                *Email is required.
+              </small>
+              <small *ngIf="emailAddress?.errors?.['email']">
+                *Email is invalid.
+              </small>
+           </div>
 
             <!--Select role-->
             <div class="flex justify-center">
-                <div class="mb-6 w-full">
-                  <select class="form-select appearance-none
+                <div class="mt-6 w-full">
+                  <select formControlName="role" class="form-select appearance-none
                     block
                     w-full
                     px-3
@@ -67,31 +102,39 @@
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-cust-green focus:outline-none" aria-label="Default select example">
-                      <option selected>Open to select role</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <option class="font-normal text-gray-700" value="null" disabled="true" [selected]="true">Select a role</option>
+
+                    <option *ngFor="let role of roles" [ngValue]="role">
+                      {{role.name}}
+                    </option>
                   </select>
                 </div>
             </div>
             
           <!-- Password input -->
-          <div class="mb-6">
+          <div class="mt-6">
             <input
               type="password"
-               class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
+               class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
               placeholder="Password"
+              formControlName="password"
             />
           </div>
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
+          class="mb-2 text-red-500">
+          <small *ngIf="password?.errors?.['required']">
+            *Password is required.
+          </small>
+       </div>
 
          
 
           <!-- Submit button -->
           <button
             type="submit"
-            (click)="navigate()"
-            class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-            
+            class="mt-6 px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
+            [disabled]="!signUpForm.valid"
+            [ngClass]="!signUpForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
           >
             Sign Up
           </button>

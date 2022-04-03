@@ -14,6 +14,6 @@ export class FarmerHomeComponent implements OnInit {
   }
 
   logOut(){
-    this.router.navigateByUrl("/")
+    this.router.navigateByUrl("/signin")
   }
 }

@@ -23,13 +23,26 @@ export class SigninComponent implements OnInit {
   selectedOption = "";
 
   signInForm = this.formBuilder.group({
-    emailAddress: ['', Validators.required],
+    emailAddress: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     role: [this.roles[3], Validators.required]
   })
 
+  get emailAddress() {return this.signInForm.get("emailAddress")}
+
+  get password() {return this.signInForm.get("password")}
+
+  get role() {return this.signInForm.get("role")}
+
+  errorMsg: string = "";
+
+  loaderActive: boolean = false;
+
   onSubmit(){
     console.log(this.signInForm.value);
+    //have to create auth
+
+
     this.router.navigateByUrl("/farmer-home");
   }
 }
