@@ -1,83 +1,74 @@
-<form class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
-    
-    <p class="my-5 text-xl">Update Profile</p>
-   
+<form [formGroup]="updateForm" class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
+  <p class="my-5 text-xl">Update Profile</p>
 
-      <div class="flex justify-between items-center gap-4">
-          <div class="mb-6">
-              <label class="block mb-2" for="">Firstname</label>
-              <input
-                type="text"
-                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
-                placeholder="Firstname"
-              />
-            </div>
-            <div class="mb-6">
-            <label class="block mb-2" for="">Lastname</label>
-              <input
-                type="text"
-                class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
-                placeholder="Lastname"
-              />
-            </div>
-       </div>
-
-       <!-- Phone Numbers -->
-       <div class="mb-6">
-        <label class="block mb-2" for="">Phone Number</label>
-          <input
-            type="text"
-            class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
-            placeholder="Phone number"
-          />
-        </div>
-    
-  
-    <!-- Email input -->
+  <div class="flex justify-between items-center gap-4">
     <div class="mb-6">
-        <label class="block mb-2" for="">Email Address</label>
-        <input
-          type="text"
-          class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-cust-green focus:bg-white focus:border-cust-green focus:outline-none"
-          placeholder="Email address"
-        />
-      </div>
+      <label class="block mb-2" for="">Firstname</label>
+      <input
+        type="text"
+        class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded focus:bg-white focus:border-cust-green focus:outline-none"
+        placeholder="Firstname"
+      />
+    </div>
+    <div class="mb-6">
+      <label class="block mb-2" for="">Lastname</label>
+      <input
+        type="text"
+        class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded focus:bg-white focus:border-cust-green focus:outline-none"
+        placeholder="Lastname"
+      />
+    </div>
+  </div>
 
-      <!--Select role-->
-      <label class="block mb-2" for="">Role</label>
-      <div class="flex justify-center">
-          
-          <div class="mb-6 w-full">
-            <select class="form-select appearance-none
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding bg-no-repeat
-              border-2 border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-cust-green focus:outline-none" aria-label="Default select example">
-                <option selected>Open to select role</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-          </div>
-      </div>
-   
+  <!-- Phone Numbers -->
+  <div class="mb-6">
+    <label class="block mb-2" for="">Phone Number</label>
+    <input
+      type="text"
+      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded focus:bg-white focus:border-cust-green focus:outline-none"
+      placeholder="Phone number"
+    />
+  </div>
 
-    <!-- Submit button -->
-    <button
-      type="submit"
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      
-    >
-      Update Profile
-    </button>     
-  </form>
+  <!-- Email input -->
+  <div class="mb-6">
+    <label class="block mb-2" for="">Email Address</label>
+    <input
+      type="text"
+      class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded focus:bg-white focus:border-cust-green focus:outline-none"
+      placeholder="Email address"
+    />
+  </div>
+
+  <!--Select role-->
+  <div class="flex justify-center">
+    <div class="mt-2 w-full">
+      <select
+        formControlName="role"
+        class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-cust-green focus:outline-none"
+        aria-label="Default select example"
+      >
+        <option
+          class="font-normal text-gray-700"
+          value="null"
+          disabled="true"
+          [selected]="true"
+        >
+          Select a role
+        </option>
+
+        <option *ngFor="let role of roles" [ngValue]="role">
+          {{ role.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <button
+    type="submit"
+    class="px-7 py-2 mt-8 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
+  >
+    Update Profile
+  </button>
+</form>
