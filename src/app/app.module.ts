@@ -12,6 +12,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChatsComponent } from './components/chats/chats.component';
+import { WeatherUpdatesComponent } from './components/weather-updates/weather-updates.component';
+import { FarmingSolutionComponent } from './components/farming-solution/farming-solution.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminComponent,
     AdminDashboardComponent,
     ProfileComponent,
-    ProfileUpdateComponent
+    ProfileUpdateComponent,
+    ChatsComponent,
+    WeatherUpdatesComponent,
+    FarmingSolutionComponent
   ],
   imports: [
     BrowserModule,
