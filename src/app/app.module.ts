@@ -16,6 +16,9 @@ import { ChatsComponent } from './components/chats/chats.component';
 import { WeatherUpdatesComponent } from './components/weather-updates/weather-updates.component';
 import { FarmingSolutionComponent } from './components/farming-solution/farming-solution.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,15 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
     ChatsComponent,
     WeatherUpdatesComponent,
     FarmingSolutionComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    AdminHomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

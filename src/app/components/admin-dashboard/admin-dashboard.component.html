@@ -6,10 +6,10 @@
       <p class="text-white text-2xl mt-2">AgriSolutions</p>
       <ul class="mt-4">
         <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
-          <a class="text-white hover:underline  mb-2" routerLink="chats">Dashboard</a>
+          <a class="text-white hover:underline  mb-2" routerLink="admin-home">Dashboard</a>
         </li>
         <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
-          <a class="text-white hover:underline  mb-2" routerLink="chats">Users</a>
+          <a class="text-white hover:underline  mb-2" routerLink="admin-users">Users</a>
         </li>
       </ul>
       
@@ -52,9 +52,7 @@
     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
     <div class="w-full h-full">
       <!-- Place your content here -->
-      <div>
-        <p class="text-2xl">Dashboard</p>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
