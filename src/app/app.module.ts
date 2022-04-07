@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChatsComponent } from './components/chats/chats.component';
 import { WeatherUpdatesComponent } from './components/weather-updates/weather-updates.component';
 import { FarmingSolutionComponent } from './components/farming-solution/farming-solution.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FarmingSolutionComponent } from './components/farming-solution/farming-
     ProfileUpdateComponent,
     ChatsComponent,
     WeatherUpdatesComponent,
-    FarmingSolutionComponent
+    FarmingSolutionComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,

@@ -110,6 +110,12 @@
                   </select>
                 </div>
             </div>
+            <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" 
+            class="mb-2 text-red-500">
+            <small *ngIf="role?.errors?.['required']">
+              *Role is required.
+            </small>
+         </div>
             
           <!-- Password input -->
           <div class="mt-6">

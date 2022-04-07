@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  isList: number = 0;
+  isMenu: boolean = false;
+  isMenuBtn() {
+    this.isMenu = !this.isMenu;
   }
+  isSearch: boolean = false;
+  constructor() {}
+  ngOnInit(): void {}
 
 }

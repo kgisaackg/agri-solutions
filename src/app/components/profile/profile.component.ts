@@ -28,4 +28,19 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/farmer-home/profile-update");
   }
 
+  areYouSure(){
+    console.log("Are you sure");
+    
+  }
+
+
+  deleteNo(){
+    console.log("NO");
+    
+  }
+
+  deleteYes(){
+    console.log("YES");
+    
+  }
 }
