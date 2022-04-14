@@ -1,0 +1,39 @@
+
+
+<div class="mt-4 ">
+
+<div class="flex justify-between items-center">
+    <p class="text-3xl">Users</p>
+    <input
+    type="text"
+    [(ngModel)]="filteredString"
+    class="form-control block px-4 py-0.5 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded m-0 focus:bg-white focus:border-cust-green focus:outline-none"
+    placeholder="Search by firstname, lastname email"
+  />
+</div>
+
+<table class="table-auto table mt-10 table-zebra w-full">
+    <thead>
+        <tr class="text-left">
+            <th>No.</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="py-0" *ngFor="let user of users | filter:filteredString;">
+            <td class="py-2"></td>
+            <td class="py-2">{{user.firstname}}</td>
+            <td class="py-2">{{user.lastname}}</td>
+            <td class="py-2">{{user.emailAddress}}</td>
+            <td class="py-2">{{user.phoneNumber}}</td>
+            <td class="py-2">{{user.role}}</td>
+        </tr>
+    </tbody>
+</table>
+
+</div>

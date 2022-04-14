@@ -12,10 +12,10 @@ export class ProfileComponent implements OnInit {
 
 
   user = {
-    firstname: "Isaac",
-    lastname: "Malebana",
+    firstname: "John",
+    lastname: "Doe",
     phoneNumber: "0721234567",
-    emailAddress: "isaac@gmail.com",
+    emailAddress: "johndoe@gmail.com",
     role: "Farmer"
   }
 
@@ -28,4 +28,19 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/farmer-home/profile-update");
   }
 
+  areYouSure(){
+    console.log("Are you sure");
+    
+  }
+
+
+  deleteNo(){
+    console.log("NO");
+    
+  }
+
+  deleteYes(){
+    console.log("YES");
+    
+  }
 }

@@ -1,23 +1,58 @@
-<div class="w-60 h-full shadow-md bg-white px-1 absolute">
-
-    <ul class="relative mt-16">
-      <li class="relative">
-        <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 1</a>
-      </li>
-      <li class="relative">
-        <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 2</a>
-      </li>
-      <li class="relative">
-        <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 2</a>
-      </li>
-    </ul>
+<div class="flex flex-no-wrap">
+  <!-- Sidebar starts -->
+  <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
+  <div style="min-height: 916px" class="min-h-screen w-64 absolute sm:relative bg-cust-green-200 shadow md:h-full flex-col justify-between hidden sm:flex">
+    <div class="px-4">
+      <p class="text-white text-2xl mt-2">AgriSolutions</p>
+      <ul class="mt-4">
+        <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
+          <a class="text-white hover:underline  mb-2" routerLink="admin-home">Dashboard</a>
+        </li>
+        <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
+          <a class="text-white hover:underline  mb-2" routerLink="admin-users">Users</a>
+        </li>
+      </ul>
+      
+    </div>
+    
   </div>
+  <!--Icon for drop down-->
+  <div [ngClass]="'w-64 z-40 absolute min-h-screen bg-cust-green-200 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out ' + (isMenu ? 'transform translate-x-0' : 'transform -translate-x-full')">
+    <div class="h-10 w-10 bg-gray-800 absolute right-0 mt-2 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer" (click)="isMenuBtn()">
+     sfsd
+    </div>
+    <div [ngClass]="(isMenu ? 'block' : 'hidden') + ' h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white'" (click)="isMenuBtn()">
+      close
+    </div>
+    <div class="px-4">
+      <p class="text-white text-2xl mt-2">AgriSolutions</p>
+      <ul class="mt-4">
+        <li class="flex w-full justify-between text-gray-300 hover:text-gray-500 cursor-pointer items-center mb-6">
+          <div class="flex items-center">
+            <span class="ml-2">Dashboard</span>
+          </div>
+        </li>
 
-
-  <nav class="relativ4200e w-full flex flex-wrap items-center justify-between py-4 bg-gray-200 text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-xs">
-    <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
-      <div class="container-fluid">
-        AgriSolutions
+      </ul>
+      <div class="flex justify-center mt-48 mb-4 w-full">
+        <div class="relative">
+          <div class="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
+           
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
+    
+  </div>
+  <!--End of icon for dropdown-->
+  
+  <!-- Sidebar ends -->
+  <!-- Remove class [ h-64 ] when adding a card block -->
+  <div class="container mx-auto py-4 h-64 md:w-4/5 w-11/12 px-6">
+    <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
+    <div class="w-full h-full">
+      <!-- Place your content here -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

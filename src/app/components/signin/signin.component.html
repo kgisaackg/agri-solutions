@@ -28,12 +28,12 @@
             </div>
             <div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" 
               class="mb-2 text-red-500">
-              <div *ngIf="emailAddress?.errors?.['required']">
+              <small *ngIf="emailAddress?.errors?.['required']">
                 *Email is required.
-              </div>
-              <div *ngIf="emailAddress?.errors?.['email']">
+              </small>
+              <small *ngIf="emailAddress?.errors?.['email']">
                 *Email is invalid.
-              </div>
+              </small>
            </div>
             
 
@@ -48,9 +48,9 @@
           </div>
           <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
               class="mb-2 text-red-500">
-              <div *ngIf="password?.errors?.['required']">
+              <small *ngIf="password?.errors?.['required']">
                 *Password is required.
-              </div>
+              </small>
            </div>
 
           <!--Select role-->
@@ -82,9 +82,9 @@
           </div>
           <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" 
               class="mb-2 text-red-500">
-              <div *ngIf="role?.errors?.['required']">
+              <small *ngIf="role?.errors?.['required']">
                 *Role is required.
-              </div>
+              </small>
            </div>
 
           <!-- Submit button -->
