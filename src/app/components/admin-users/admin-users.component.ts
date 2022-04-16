@@ -16,17 +16,17 @@ export class AdminUsersComponent implements OnInit {
 
   users = [
     {
-      firstname: "Isaac",
-      lastname: "Malebana",
+      firstname: "John 1",
+      lastname: "Doe 1",
       phoneNumber: "0721342222",
-      emailAddress: "isaacka@gmail.com",
+      emailAddress: "johndoe@gmail.com",
       role: "farmer"
     },
     {
-      firstname: "Kagiso",
-      lastname: "Malebana",
+      firstname: "John 2",
+      lastname: "Doe 2",
       phoneNumber: "0721342222",
-      emailAddress: "isaacka@gmail.com",
+      emailAddress: "joedoe2@gmail.com",
       role: "Financial Advisor"
     }, 
     {

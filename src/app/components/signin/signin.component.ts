@@ -5,44 +5,56 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-  }
-
   roles = [
-    { name: "Farmer" },
-    { name: "Farmer Experts"},
-    { name: "Financial Advisor"}
-  ]
+    { name: 'Farmer' },
+    { name: 'Farmer Experts' },
+    { name: 'Financial Advisor' },
+  ];
 
-  selectedOption = "";
+  selectedOption = '';
+
+  user: any;
+
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {}
 
   signInForm = this.formBuilder.group({
     emailAddress: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    role: [this.roles[3], Validators.required]
-  })
+    role: [this.roles[3], Validators.required],
+  });
 
-  get emailAddress() {return this.signInForm.get("emailAddress")}
+  get emailAddress() {
+    return this.signInForm.get('emailAddress');
+  }
 
-  get password() {return this.signInForm.get("password")}
+  get password() {
+    return this.signInForm.get('password');
+  }
 
-  get role() {return this.signInForm.get("role")}
+  get role() {
+    return this.signInForm.get('role');
+  }
 
-  errorMsg: string = "";
+  errorMsg: string = '';
 
   loaderActive: boolean = false;
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.signInForm.value);
-    //have to create auth
 
+    this.user = {
+      emailAddress: this.signInForm.value.emailAddress,
+      password: this.signInForm.value.password,
+      role: this.signInForm.value.role.name,
+    };
 
-    this.router.navigateByUrl("/farmer-home");
+    console.log("User", this.user);
+    
+    this.router.navigateByUrl('/farmer-home');
   }
 }

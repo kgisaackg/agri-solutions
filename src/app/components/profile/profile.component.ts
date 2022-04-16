@@ -12,10 +12,10 @@ export class ProfileComponent implements OnInit {
 
 
   user = {
-    firstname: "Isaac",
-    lastname: "Malebana",
+    firstname: "John",
+    lastname: "Doe",
     phoneNumber: "0721234567",
-    emailAddress: "isaac@gmail.com",
+    emailAddress: "johndoe@gmail.com",
     role: "Farmer"
   }
 
