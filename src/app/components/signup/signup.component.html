@@ -14,7 +14,10 @@
           <p class="my-5 text-xl">Sign Up</p>
           <div class="mb-2 text-red-500">
             {{errorMsg}} 
-           </div>
+           </div> 
+           <div  *ngIf="isLoading" class="flex justify-center">
+            <div class="loader absolute mt-20"></div>
+          </div>
          
 
             <div class="flex justify-between items-center gap-4">

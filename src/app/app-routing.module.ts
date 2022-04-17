@@ -12,25 +12,25 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { WeatherUpdatesComponent } from './components/weather-updates/weather-updates.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 const routes: Routes = [
+ // {path: "landing", component: LandingPageComponent},
   {path: "", component: SigninComponent},
   {path: "signin", component: SigninComponent},
   {path: "signup", component: SignupComponent},
   {path: "farmer-home", component: FarmerHomeComponent, children:[
-    //have to change defaul to chats.
+
     {path: "", component: ChatsComponent},
+    {path: "chats", component: ChatsComponent },
     {path: "profile", component: ProfileComponent},
     {path: "profile-update", component: ProfileUpdateComponent},
-    {path: "chats", component: ChatsComponent },
     {path: "weather-updates", component: WeatherUpdatesComponent},
     {path: "farmsolutions", component: FarmingSolutionComponent },
    
   ]},
   
-
   {path: "admin", component: AdminComponent},
-
   {path: "admin-dashboard", component: AdminDashboardComponent, children:
     [
       {path: "", component: AdminHomeComponent},

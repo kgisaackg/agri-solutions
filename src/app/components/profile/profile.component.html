@@ -17,7 +17,10 @@
         <p class="text-cust-green font-semibold">Firstname:</p>
         <p>{{user.firstname}}</p>
     </div>
-
+    <div  *ngIf="isLoading" class="flex justify-center">
+      <div class="loader absolute mt-20"></div>
+    </div>
+   
     <div class="border-b py-2 mt-3">
       <p class="text-cust-green font-semibold">Lastname:</p>
       <p>{{user.lastname}}</p>
@@ -74,7 +77,7 @@
  <!-- The button to open modal 
  ongratulations random Interner user!
 
-<!-- Put this part before </body> tag 
+ut this part before </body> tag -->
 <input type="checkbox" id="my-modal-3" class="modal-toggle">
 <div class="modal">
   <div class="modal-box relative">
@@ -90,6 +93,7 @@
       <button
       type="submit"
       (click)="deleteYes()"
+      
       class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
       bg-gray-50 
     >Yes</button>
@@ -97,6 +101,5 @@
   </div>
 </div>
 
--->
 
 

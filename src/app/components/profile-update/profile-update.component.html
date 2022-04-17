@@ -21,6 +21,10 @@
         </div>
 
       </div>
+      <div  *ngIf="isLoading" class="flex justify-center">
+        <div class="loader absolute mt-20"></div>
+      </div>
+     
       <div class="mt-6">                      
         <input
           type="text"
@@ -61,17 +65,7 @@
     class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
     placeholder="Email address"
     formControlName="emailAddress"
-    
   />
-</div>
-<div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" 
-  class="mb-2 text-red-500">
-  <small *ngIf="emailAddress?.errors?.['required']">
-    *Email is required.
-  </small>
-  <small *ngIf="emailAddress?.errors?.['email']">
-    *Email is invalid.
-  </small>
 </div>
 
 <!--Select role-->
@@ -92,7 +86,8 @@
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-cust-green focus:outline-none" aria-label="Default select example">
-        <option class="font-normal text-gray-700" value="null" disabled="true" >Select a role</option>
+        <option class="font-normal text-gray-700" value="null" disabled="true" >{{user.role}}</option>
+        <option class="font-normal text-cust-green" value="null" disabled="true" >**New role**</option>
 
         <option *ngFor="let role of roles" [ngValue]="role">
           {{role.name}}
@@ -100,13 +95,6 @@
       </select>
     </div>
 </div>
-<div *ngIf="role?.invalid && (role?.dirty || role?.touched)" 
-class="mb-2 text-red-500">
-<small *ngIf="role?.errors?.['required']">
-  *Role is required.
-</small>
-</div>
-
 
 <!-- Submit button -->
 <button

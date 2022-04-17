@@ -10,7 +10,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-
   user = {
     firstname: "John",
     lastname: "Doe",
@@ -18,6 +17,8 @@ export class ProfileComponent implements OnInit {
     emailAddress: "johndoe@gmail.com",
     role: "Farmer"
   }
+
+  isLoading: boolean = false;
 
   ngOnInit(): void {
   }

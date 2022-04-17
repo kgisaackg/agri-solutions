@@ -10,13 +10,15 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
   roles = [
     { name: 'Farmer' },
-    { name: 'Farmer Experts' },
-    { name: 'Financial Advisor' },
+    { name: 'Agricultural Professional' },
+    { name: 'Financial Administrator' },
   ];
 
   selectedOption = '';
 
   user: any;
+
+  isLoading: boolean = false;
 
   constructor(private router: Router, private formBuilder: FormBuilder) {}
 
@@ -27,7 +29,7 @@ export class SigninComponent implements OnInit {
     password: ['', Validators.required],
     role: [this.roles[3], Validators.required],
   });
-
+  
   get emailAddress() {
     return this.signInForm.get('emailAddress');
   }
@@ -41,7 +43,7 @@ export class SigninComponent implements OnInit {
   }
 
   errorMsg: string = '';
-
+  
   loaderActive: boolean = false;
 
   onSubmit() {

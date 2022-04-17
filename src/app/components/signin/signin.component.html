@@ -14,7 +14,10 @@
           <p class="my-5 text-xl">Sign In</p>
           <div class="mb-2 text-red-500">
             {{errorMsg}} 
-           </div>
+          </div>
+          <div  *ngIf="isLoading" class="flex justify-center">
+            <div class="loader absolute mt-20"></div>
+          </div>
          
           <!-- Email input -->
           <div class="">

@@ -11,8 +11,8 @@ import { User } from '../../interface/user.interface';
 export class SignupComponent implements OnInit {
   roles = [
     { name: 'Farmer' },
-    { name: 'Farmer Experts' },
-    { name: 'Financial Advisor' },
+    { name: 'Agricultural Professional' },
+    { name: 'Financial Administrator' },
   ];
 
   selectedOption = '';
@@ -26,6 +26,8 @@ export class SignupComponent implements OnInit {
     role: '',
   };
 
+  isLoading: boolean = false;
+  
   constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
@@ -94,7 +96,7 @@ export class SignupComponent implements OnInit {
       role: this.signUpForm.value.role.name,
     };
 
-    console.log();
+    console.log("Sign Up", this.user);
     
     this.router.navigateByUrl('/farmer-home');
   }

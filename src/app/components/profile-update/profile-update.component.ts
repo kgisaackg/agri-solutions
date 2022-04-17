@@ -10,18 +10,20 @@ import { User } from 'src/app/interface/user.interface';
 export class ProfileUpdateComponent implements OnInit {
   roles = [
     { name: 'Farmer' },
-    { name: 'Farmer Experts' },
-    { name: 'Financial Advisor' },
+    { name: 'Agricultural Professional' },
+    { name: 'Financial Administrator' },
   ];
 
   selectedOption = '';
 
+  isLoading: boolean = false;
+  
   user: User = {
     firstname: 'Isaac',
     lastname: 'Malebana',
-    phoneNumber: '07214324242',
+    phoneNumber: '0721432424',
     emailAddress: 'isaac@gmail.com',
-    role: '',
+    role: "Financial Administrator",
   };
 
   updateForm = this.formBuilder.group({
@@ -45,8 +47,8 @@ export class ProfileUpdateComponent implements OnInit {
       this.user.phoneNumber,
       [Validators.required, Validators.pattern('(((0[6-8]))([0-9]{8}))')],
     ], //^(((0[6-8]))([0-9]{8})) OR ((\\+27))[6-8][0-9]{8}
-    emailAddress: [this.user.emailAddress, [Validators.required, Validators.email]],
-    role: [this.roles[3], Validators.required],
+    emailAddress: [{value: this.user.emailAddress, disabled: true},, [Validators.required, Validators.email]],
+    role: [this.roles[3]],
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -76,12 +78,15 @@ export class ProfileUpdateComponent implements OnInit {
 
 
   onSubmit() {
+
+    let roleName = this.updateForm.value.role ? this.updateForm.value.role.name : this.user.role;
+    
     this.user = {
       firstname: this.updateForm.value.firstname,
       lastname: this.updateForm.value.lastname,
       phoneNumber: this.updateForm.value.phoneNumber,
-      emailAddress: this.updateForm.value.emailAddress,
-      role: '',
+      emailAddress: this.user.emailAddress,
+      role: roleName
     };
 
     console.log("User", this.user);
