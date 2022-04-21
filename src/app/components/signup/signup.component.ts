@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../interface/user.interface';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -28,7 +29,7 @@ export class SignupComponent implements OnInit {
 
   isLoading: boolean = false;
   
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService) {}
 
   ngOnInit(): void {}
 
@@ -96,7 +97,8 @@ export class SignupComponent implements OnInit {
       role: this.signUpForm.value.role.name,
     };
 
-    console.log("Sign Up", this.user);
+    console.log("Sign Up wokrs", this.user);
+    this.auth.signUp(this.user);
     
     this.router.navigateByUrl('/farmer-home');
   }

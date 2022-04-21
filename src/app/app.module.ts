@@ -21,31 +21,36 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 
 
-// //Firebase 
+//Firebase 
 
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
+// Import the functions you need from the SDKs you need
 
-// // Your web app's Firebase configuration
-// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD_Dk1IQRFCPAUm_FJDT6W02OFDKq9AJEo",
-//   authDomain: "the-agri-solutions.firebaseapp.com",
-//   projectId: "the-agri-solutions",
-//   storageBucket: "the-agri-solutions.appspot.com",
-//   messagingSenderId: "693743764374",
-//   appId: "1:693743764374:web:8d81a97b5058bfd299d3b7",
-//   measurementId: "G-Q6RP5SX993"
-// };
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireModule } from '@angular/fire/compat';
+import { HttpClientModule } from '@angular/common/http';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD_Dk1IQRFCPAUm_FJDT6W02OFDKq9AJEo", 
+  authDomain: "the-agri-solutions.firebaseapp.com",
+  projectId: "the-agri-solutions",
+  storageBucket: "the-agri-solutions.appspot.com",
+  messagingSenderId: "693743764374",
+  appId: "1:693743764374:web:8d81a97b5058bfd299d3b7",
+  measurementId: "G-Q6RP5SX993"
+};
 
 // // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
-//end of firebase 
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +73,11 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
