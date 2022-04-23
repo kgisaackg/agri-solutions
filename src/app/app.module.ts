@@ -20,6 +20,7 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 //Firebase 
 
@@ -77,7 +78,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

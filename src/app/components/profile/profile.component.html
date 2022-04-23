@@ -36,69 +36,18 @@
       <p>{{user.role}}</p>
     </div>
 
-    <p class="mt-8"></p>
-    <label for="my-modal-3"
+    <p class="mt-4"></p>
+    <button
     (click)="areYouSure()"
-    class="mt-10 px-7 py-2.5 bg-red-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
-    >DELETE</label>
+    class="mt-10 px-7 py-2 bg-red-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
+    >DELETE</button>
   
      
   </div>
 
 
-  <!--New Popup-->
-  <!-- The button to open modal -
-<label for="my-modal-4" class="btn modal-button">open modal</label>
--->
-<!-- Put this part before </body> tag -->
-<input type="checkbox" id="my-modal-4" class="modal-toggle">
-<label for="my-modal-4" class="modal cursor-pointer">
-  <label class="modal-box relative" for="">
-    <h3 class="text-lg font-bold">Are you sure you want to delete?</h3>
-    <div class="flex justify-between">
-      <button
-      type="submit"
-      (click)="deleteNo()"
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      bg-gray-50 
-    >No</button>
-      <button
-      type="submit"
-      (click)="deleteYes()"
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      bg-gray-50 
-    >Yes</button>
-    </div>
-  </label>
-</label>
+ 
 
-  <!--End of New Popup-->
-
- <!-- The button to open modal 
- ongratulations random Interner user!
-
-ut this part before </body> tag -->
-<input type="checkbox" id="my-modal-3" class="modal-toggle">
-<div class="modal">
-  <div class="modal-box relative">
-    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <h3 class="text-lg font-bold">Are you sure you want to delete</h3>
-    <div class="flex justify-between">
-      <button
-      type="submit"
-      (click)="deleteNo()"
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      bg-gray-50 
-    >No</button>
-      <button
-      type="submit"
-      (click)="deleteYes()"
-      
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      bg-gray-50 
-    >Yes</button>
-    </div>
-  </div>
 </div>
 
 

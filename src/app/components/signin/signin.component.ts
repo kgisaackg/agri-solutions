@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +21,7 @@ export class SigninComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService) {}
 
   ngOnInit(): void {}
 
@@ -47,16 +48,11 @@ export class SigninComponent implements OnInit {
   loaderActive: boolean = false;
 
   onSubmit() {
-    console.log(this.signInForm.value);
-
     this.user = {
       emailAddress: this.signInForm.value.emailAddress,
       password: this.signInForm.value.password,
       role: this.signInForm.value.role.name,
     };
-
-    console.log("User", this.user);
-    
-    this.router.navigateByUrl('/farmer-home');
+    this.auth.signIn(this.user);
   }
 }

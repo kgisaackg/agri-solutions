@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -8,19 +10,31 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
-  user = {
-    firstname: "John",
-    lastname: "Doe",
-    phoneNumber: "0721234567",
-    emailAddress: "johndoe@gmail.com",
-    role: "Farmer"
-  }
+  user: any;
 
   isLoading: boolean = false;
 
+  user_id = localStorage.getItem("farmer_auth") as string;
+
   ngOnInit(): void {
+    this.getUserById();
+  }
+  
+  getUserById(){
+    this.isLoading = true;
+    this.userService.getUserById(this.user_id)
+    .subscribe({
+      next: (res: any) => {
+        this.user = res.data();
+        this.isLoading = false;
+      },
+      error: (error) => {
+         alert(error.message);
+         this.isLoading = false;
+      }
+    });
   }
 
   toProfileUpdate(){
@@ -31,17 +45,20 @@ export class ProfileComponent implements OnInit {
 
   areYouSure(){
     console.log("Are you sure");
-    
-  }
-
-
-  deleteNo(){
-    console.log("NO");
-    
-  }
-
-  deleteYes(){
-    console.log("YES");
-    
+    Swal.fire({
+      text: "Are you sure you want to delete?",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+      padding: '4px',
+      width: '350px'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //have to call delete api
+        console.log("Then this will delete");
+        
+      }
+    })
   }
 }

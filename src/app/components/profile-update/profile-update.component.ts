@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/interface/user.interface';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile-update',
@@ -18,13 +20,23 @@ export class ProfileUpdateComponent implements OnInit {
 
   isLoading: boolean = false;
   
+  user_id = localStorage.getItem("farmer_auth") as string;
+
   user: User = {
-    firstname: 'Isaac',
-    lastname: 'Malebana',
-    phoneNumber: '0721432424',
-    emailAddress: 'isaac@gmail.com',
-    role: "Financial Administrator",
+    firstname: '',
+    lastname: '',
+    phoneNumber: '',
+    emailAddress: '',
+    role: "",
   };
+
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.getUserById();
+  //  this.updateUserConfirmation();
+  }
+
 
   updateForm = this.formBuilder.group({
     firstname: [
@@ -51,11 +63,6 @@ export class ProfileUpdateComponent implements OnInit {
     role: [this.roles[3]],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {}
-
-
   get firstname() {
     return this.updateForm.get('firstname');
   }
@@ -76,20 +83,73 @@ export class ProfileUpdateComponent implements OnInit {
     return this.updateForm.get('role');
   }
 
+  updateFormValues(user: any){
+    this.firstname?.setValue(user.firstname);
+    this.lastname?.setValue(user.lastname);
+    this.phoneNumber?.setValue(user.phoneNumber);
+    this.emailAddress?.setValue(user.emailAddress)
+    this.role?.setValue(user.role)
+  }
+
+  getUserById(){
+    this.isLoading = true;
+    this.userService.getUserById(this.user_id)
+    .subscribe({
+      next: (res: any) => {
+        this.user = res.data();
+        this.isLoading = false;
+        this.updateFormValues(this.user)
+      },
+      error: (error) => {
+        Swal.fire(
+          '',
+          'Server error'
+        )
+         this.isLoading = false;
+      }
+    });
+  }
+
+  updateUser(user:any){
+    this.isLoading = true;
+    this.userService.updateUser(user)
+    .then(
+      (res: any) => {
+        this.isLoading = false; 
+      }
+    )
+  }
 
   onSubmit() {
-
     let roleName = this.updateForm.value.role ? this.updateForm.value.role.name : this.user.role;
     
     this.user = {
+      uuid: this.user_id,
       firstname: this.updateForm.value.firstname,
       lastname: this.updateForm.value.lastname,
       phoneNumber: this.updateForm.value.phoneNumber,
       emailAddress: this.user.emailAddress,
       role: roleName
-    };
+    }; 
 
-    console.log("User", this.user);
-    
+    //this.updateUser(this.user);
+    this.updateUserConfirmation(this.user);
+  }
+
+  updateUserConfirmation(user: any){
+    Swal.fire({
+      text: "Are you sure you want to update?",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update!',
+      padding: '4px',
+      width: '350px'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.updateUser(user);
+      }
+    })
+
   }
 }
