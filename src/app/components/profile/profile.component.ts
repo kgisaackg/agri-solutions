@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private auth: AuthenticationService) { }
 
   user: any;
 
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserById();
+    this.auth.deleteUser();
   }
   
   getUserById(){

@@ -13,7 +13,7 @@ export class UserService {
   tableName = 'users'
 
   updateUser(user: User){
-    return this.afs.doc(`${this.tableName}/` + user.uuid).update(user);
+    return this.afs.doc(`${this.tableName}/` + user.uid).update(user);
   }
 
   getUserById(userId: string){

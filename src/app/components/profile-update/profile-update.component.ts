@@ -35,6 +35,7 @@ export class ProfileUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.getUserById();
   //  this.updateUserConfirmation();
+  
   }
 
 
@@ -60,7 +61,7 @@ export class ProfileUpdateComponent implements OnInit {
       [Validators.required, Validators.pattern('(((0[6-8]))([0-9]{8}))')],
     ], //^(((0[6-8]))([0-9]{8})) OR ((\\+27))[6-8][0-9]{8}
     emailAddress: [{value: this.user.emailAddress, disabled: true},, [Validators.required, Validators.email]],
-    role: [this.roles[3]],
+    role: [{value: this.user.role, disabled: true}],
   });
 
   get firstname() {
@@ -124,7 +125,7 @@ export class ProfileUpdateComponent implements OnInit {
     let roleName = this.updateForm.value.role ? this.updateForm.value.role.name : this.user.role;
     
     this.user = {
-      uuid: this.user_id,
+      uid: this.user_id,
       firstname: this.updateForm.value.firstname,
       lastname: this.updateForm.value.lastname,
       phoneNumber: this.updateForm.value.phoneNumber,
@@ -148,6 +149,10 @@ export class ProfileUpdateComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.updateUser(user);
+      }else{
+        console.log("is calleed");
+        this.getUserById();
+        this.updateFormValues(this.user)
       }
     })
 

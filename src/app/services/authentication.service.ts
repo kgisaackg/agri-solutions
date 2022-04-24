@@ -8,6 +8,9 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
+import { getAuth, deleteUser } from "firebase/auth";
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,13 +18,19 @@ export class AuthenticationService {
 
   base = environment.baseUrl; 
 
-  constructor(private http: HttpClient, private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) { }
+  auth = getAuth();
+  userDel = this.auth.currentUser;
+
+  constructor(private http: HttpClient, private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
+   
+   }
 
   signUp(user: any){
     return this.afAuth
       .createUserWithEmailAndPassword(user.emailAddress, user.password)
       .then((result: any) => {
         this.createUser(user,result.user.uid);
+        
       })
       .catch((error) => {
         window.alert(error.message);
@@ -34,11 +43,9 @@ export class AuthenticationService {
       //the below is a hack it has to be handled propery
 
       if(user.emailAddress != "admin@gmail.com" ){
-        console.log(value.user);
-        localStorage.setItem('farmer_auth', value.user.uid)
-        
-        this.router.navigateByUrl('/farmer-home');
-        
+
+        localStorage.setItem('farmer_auth', value.user.uid) 
+        this.router.navigateByUrl('/farmer-home');     
       }else if(user.emailAddress == "admin@gmail.com"){
         
         localStorage.setItem('admin_auth', value.user.uid)
@@ -51,6 +58,7 @@ export class AuthenticationService {
     .catch((err:any) => {
       //incase of errors
       alert(err.message)
+
     });
   }
 
@@ -67,6 +75,7 @@ export class AuthenticationService {
     console.log("Myuser", user);
 
     localStorage.setItem('farmer_auth', id)
+    this.router.navigateByUrl('/farmer-home');
     
     const userData = {
       uid: id,
@@ -79,5 +88,31 @@ export class AuthenticationService {
     return userRef.set({...userData}, {
       merge: true,
     });
+  }
+
+  deleteUser(){
+
+    this.afAuth.authState.subscribe(user => {
+      if (user){
+        //this.userState = user.delete;
+        let userAcc = this.afAuth.currentUser;
+        console.log("Current Users Afth", userAcc);
+        deleteUser(userAcc as any).then(() => {
+          // User deleted.
+          console.log("user has been delete");
+          
+        }).catch((error) => {
+          // An error ocurred
+          // ...
+          console.log("Cannot delet", error);
+          
+        });
+       // localStorage.setItem('userId', user.uid);
+      } else {
+        localStorage.setItem('user', "null");
+      }
+    });
+
+    
   }
 }

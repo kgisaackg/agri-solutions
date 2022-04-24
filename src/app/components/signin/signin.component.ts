@@ -28,7 +28,7 @@ export class SigninComponent implements OnInit {
   signInForm = this.formBuilder.group({
     emailAddress: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    role: [this.roles[3], Validators.required],
+    //role: [this.roles[3], Validators.required],
   });
   
   get emailAddress() {
@@ -39,9 +39,9 @@ export class SigninComponent implements OnInit {
     return this.signInForm.get('password');
   }
 
-  get role() {
-    return this.signInForm.get('role');
-  }
+  // get role() {
+  //   return this.signInForm.get('role');
+  // }
 
   errorMsg: string = '';
   
@@ -51,8 +51,8 @@ export class SigninComponent implements OnInit {
     this.user = {
       emailAddress: this.signInForm.value.emailAddress,
       password: this.signInForm.value.password,
-      role: this.signInForm.value.role.name,
     };
+    
     this.auth.signIn(this.user);
   }
 }

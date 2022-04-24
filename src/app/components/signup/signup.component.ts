@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
       [Validators.required, Validators.pattern('(((0[6-8]))([0-9]{8}))')],
     ], //^(((0[6-8]))([0-9]{8})) OR ((\\+27))[6-8][0-9]{8}
     emailAddress: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     role: [this.roles[3], Validators.required],
   });
 
@@ -85,7 +85,6 @@ export class SignupComponent implements OnInit {
 
   errorMsg: string = '';
 
-  loaderActive: boolean = false;
 
   onSubmit() {
     this.user = {
@@ -97,9 +96,11 @@ export class SignupComponent implements OnInit {
       role: this.signUpForm.value.role.name,
     };
 
-    console.log("Sign Up wokrs", this.user);
-    this.auth.signUp(this.user);
-    
-    this.router.navigateByUrl('/farmer-home');
+    this.isLoading = true;
+    this.auth.signUp(this.user).then(
+      () => this.isLoading = false
+    ).finally(
+      () => this.isLoading  = false
+    );
   }
 }

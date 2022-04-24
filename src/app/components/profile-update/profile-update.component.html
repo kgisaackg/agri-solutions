@@ -86,9 +86,7 @@
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-cust-green focus:outline-none" aria-label="Default select example">
-        <option class="font-normal text-gray-700" value="null" disabled="true" selected >{{user.role}}</option>
-        <option class="font-normal text-cust-green" value="null" disabled="true" >**New role**</option>
-
+        <option class="font-normal text-gray-700" value={{user.role}}  [selected]="true">{{user.role}}</option>
         <option *ngFor="let role of roles" [ngValue]="role">
           {{role.name}}
         </option>

@@ -134,6 +134,9 @@
           <small *ngIf="password?.errors?.['required']">
             *Password is required.
           </small>
+          <small *ngIf="password?.errors?.['minlength']"> 
+            *Must have atleast 6 characters.
+          </small>
        </div>
 
          
