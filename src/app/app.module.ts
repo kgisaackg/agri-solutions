@@ -17,7 +17,8 @@ import { WeatherUpdatesComponent } from './components/weather-updates/weather-up
 import { FarmingSolutionComponent } from './components/farming-solution/farming-solution.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { FilterPipe } from './pipes/filter.pipe';
+//import { FilterPipe } from './pipes/filter.pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -68,18 +69,19 @@ const firebaseConfig = {
     FarmingSolutionComponent,
     AdminUsersComponent,
     AdminHomeComponent,
-    FilterPipe
+   // FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

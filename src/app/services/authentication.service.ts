@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFirestore,
@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 
 import { getAuth, deleteUser } from "firebase/auth";
+import { IsloadingService } from './isloading.service';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -16,28 +18,30 @@ import { getAuth, deleteUser } from "firebase/auth";
 })
 export class AuthenticationService {
 
-  base = environment.baseUrl; 
-
   auth = getAuth();
   userDel = this.auth.currentUser;
 
-  constructor(private http: HttpClient, private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {
+  constructor(private http: HttpClient, private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router, private isLoadingService: IsloadingService) {
    
    }
 
   signUp(user: any){
+    this.isLoadingService.isLoading.next(true);
     return this.afAuth
       .createUserWithEmailAndPassword(user.emailAddress, user.password)
       .then((result: any) => {
-        this.createUser(user,result.user.uid);
+        this.createUser(user,result.user.uid)
+        .finally(() => this.isLoadingService.isLoading.next(false))
         
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.isLoadingService.isLoading.next(false);
+        this.errorAlert(error)
       });
   }
 
   signIn(user: any){
+    this.isLoadingService.isLoading.next(true);
     this.afAuth.signInWithEmailAndPassword(user.emailAddress, user.password)
     .then((value:any)  => {
       //the below is a hack it has to be handled propery
@@ -53,11 +57,15 @@ export class AuthenticationService {
       }else{
         //incase of error
       }
+      this.isLoadingService.isLoading.next(false);
 
     })
     .catch((err:any) => {
       //incase of errors
-      alert(err.message)
+      //alert(cust[0])
+      this.isLoadingService.isLoading.next(false);
+
+      this.errorAlert(err)
 
     });
   }
@@ -68,6 +76,7 @@ export class AuthenticationService {
   }
 
   createUser(user: any, id: any) {
+    
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${id}`
     );
@@ -115,4 +124,19 @@ export class AuthenticationService {
 
     
   }
+
+  errorAlert(err: any){
+    let removeFirebase = err.message.split(":")
+    let cust = removeFirebase[1].split("(");
+    //this.isLoadingService.isLoading.next(false)
+    Swal.fire({
+      text: cust[0],
+      color: '#FF0000',
+      showConfirmButton: false,
+      showCloseButton: true,
+      padding: '2px',
+      timer: 2500
+    })
+  }
+
 }

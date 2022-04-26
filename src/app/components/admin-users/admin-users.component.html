@@ -6,12 +6,15 @@
     <p class="text-3xl">Users</p>
     <input
     type="text"
-    [(ngModel)]="filteredString"
+    [(ngModel)]="searchText"
     class="form-control block px-4 py-0.5 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded m-0 focus:bg-white focus:border-cust-green focus:outline-none"
     placeholder="Search by firstname, lastname email"
   />
 </div>
 
+<div *ngIf="isLoading" class="flex justify-center">
+    <div class="loader absolute mt-20"></div>
+  </div>
 <table class="table-auto table mt-10 table-zebra w-full">
     <thead>
         <tr class="text-left">
@@ -25,8 +28,8 @@
     </thead>
 
     <tbody>
-        <tr class="py-0" *ngFor="let user of users | filter:filteredString;">
-            <td class="py-2"></td>
+        <tr class="py-0" *ngFor="let user of users |filter:searchText; let x = index">
+            <td class="py-2">{{x+1}}</td>
             <td class="py-2">{{user.firstname}}</td>
             <td class="py-2">{{user.lastname}}</td>
             <td class="py-2">{{user.emailAddress}}</td>

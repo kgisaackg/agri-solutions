@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IsloadingService } from 'src/app/services/isloading.service';
 import { User } from '../../interface/user.interface';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -29,7 +30,7 @@ export class SignupComponent implements OnInit {
 
   isLoading: boolean = false;
   
-  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService, public isloader: IsloadingService) {}
 
   ngOnInit(): void {}
 

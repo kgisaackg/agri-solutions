@@ -15,7 +15,7 @@
           <div class="mb-2 text-red-500">
             {{errorMsg}} 
            </div> 
-           <div  *ngIf="isLoading" class="flex justify-center">
+           <div *ngIf="isloader.isLoading | async" class="flex justify-center">
             <div class="loader absolute mt-20"></div>
           </div>
          

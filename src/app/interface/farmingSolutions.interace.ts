@@ -1,5 +1,5 @@
 export interface FarmingSolution{
-    uuid?: string;
+    uid?: string;
     title: string;
     description: string;
     authour: string;

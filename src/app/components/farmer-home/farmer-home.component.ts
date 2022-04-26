@@ -25,6 +25,7 @@ export class FarmerHomeComponent implements OnInit {
   }
 
   logOut(){
+    localStorage.removeItem('farmer_auth');
     this.router.navigateByUrl("/signin")
   }
 }
