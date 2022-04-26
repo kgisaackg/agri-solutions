@@ -1,8 +1,8 @@
 export interface weather{
     user_id: string;
-    uuid?: string;
+    uid?: string;
     location: string;
     date: Date;
-    temperature: string;
+   // temperature: string;
     notification: boolean;
 }
