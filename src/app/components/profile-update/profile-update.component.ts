@@ -118,7 +118,13 @@ export class ProfileUpdateComponent implements OnInit {
       (res: any) => {
         this.isLoading = false; 
       }
-    )
+    ).catch(() => {
+      Swal.fire(
+        '',
+        'Server error'
+      )
+      this.isLoading = false;
+    })
   }
 
   onSubmit() {

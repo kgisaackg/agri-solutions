@@ -15,9 +15,16 @@ export class FarmingSolutionComponent implements OnInit {
     date: new Date()
   };
 
+  isAddOpen = false;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  //toggle add
+  openAdd(){
+    let isOpen = false
+    this.isAddOpen = this.isAddOpen == isOpen ? true : false;                
+  }
 }
