@@ -1,31 +1,37 @@
-<div class="card shadow-0 border">
-    <div class="card-body py-0 px-4 mb-6">
-        <div class="flex">
-            <h4 class="mt-[20px]"><strong>Malebana Isaac</strong></h4>
-            <h4 class="font-bold text-4xl mx-1">.</h4> 
-            <h4 class="mt-[20px]">14 Nov 2021</h4>
-        </div>
-
-        <p class="mb-2"><strong>Farming time</strong></p>
-        <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dolores aut eum rerum.</p>
-
-
-    <div>
-
+<div  *ngIf="isLoading" class="flex justify-center">
+    <div class="loader absolute mt-20"></div>
+  </div>
+<div *ngFor="let fS of farmingSolution">
+    <div class="card shadow-0 border mb-4">
+        <div class="card-body py-0 px-4 mb-6">
+            <div class="flex">
+                <h4 class="mt-[20px]"><strong>Malebana Isaac</strong></h4>
+                <h4 class="font-bold text-4xl mx-1">.</h4> 
+                <h4 class="mt-[20px]">14 Nov 2021</h4>
+            </div>
+    
+            <p class="mb-2"><strong>{{fS.title}}</strong></p>
+            <p class="mb-2">{{fS.description}}</p>
+    
+    
+        <div>
+    
+            <button
+            (click)="delete(fS.id)"
+        class="px-7 py-2 bg-red-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
+        >DELETE</button>
         <button
-    class="px-7 py-2 bg-red-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
-    >DELETE</button>
-    <button
-    type="submit"
-
-    class="ml-4 px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-    bg-gray-50 
->
-    Edit
-</button>
-</div>
-
+        type="submit"
+    
+        class="ml-4 px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
+        bg-gray-50 
+    >
+        Edit
+    </button>
     </div>
-
-
+    
+        </div>
+    
+    
+    </div>
 </div>

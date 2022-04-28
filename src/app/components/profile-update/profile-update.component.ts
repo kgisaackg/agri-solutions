@@ -161,6 +161,5 @@ export class ProfileUpdateComponent implements OnInit {
         this.updateFormValues(this.user)
       }
     })
-
   }
 }

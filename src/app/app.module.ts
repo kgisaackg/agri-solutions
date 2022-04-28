@@ -36,6 +36,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { HttpClientModule } from '@angular/common/http';
 import { AddFarmingSolutionComponent } from './components/add-farming-solution/add-farming-solution.component';
 import { FarmSolutionCardComponent } from './components/farm-solution-card/farm-solution-card.component';
+import { EditFarmingSolutionComponent } from './components/edit-farming-solution/edit-farming-solution.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -73,6 +74,7 @@ const firebaseConfig = {
     AdminHomeComponent,
     AddFarmingSolutionComponent,
     FarmSolutionCardComponent,
+    EditFarmingSolutionComponent,
    // FilterPipe
   ],
   imports: [

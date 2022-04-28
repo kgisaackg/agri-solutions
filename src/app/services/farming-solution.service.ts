@@ -17,7 +17,9 @@ export class FarmingSolutionService {
   }
 
   updateFarmingSolution(farmSolution: FarmingSolution){
-    return this.afs.doc(`${this.tableName}/` + farmSolution.uid).update(farmSolution);
+    console.log(farmSolution);
+    
+    return this.afs.doc(`${this.tableName}/` + farmSolution.id).update(farmSolution);
   }
 
   getFarmingSolutionById(farmSolutionId: string){
@@ -31,5 +33,9 @@ export class FarmingSolutionService {
 
   deleteFarmingSolutionById(farmSolutionId: string){
    return this.afs.doc(`${this.tableName}/` + farmSolutionId).delete();
+  }
+
+  getAllFarmingSolutionByUserId(){
+    
   }
 }
