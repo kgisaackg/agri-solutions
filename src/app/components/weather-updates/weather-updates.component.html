@@ -2,7 +2,7 @@
     <div class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
        <div class="flex justify-between my-5">
       <p class="text-xl">Weather Report</p>
-      https://dev.to/dipteekhd/angular-behaviorsubject-p1
+     
       <button
       type="submit"
       
@@ -15,29 +15,29 @@
     </div>
       <div class="border-b py-2 mt-3 flex justify-between">
           <p class="text-cust-green font-semibold">City</p>
-          <p>Date</p>
+          <p>{{weather.city}}</p>
       </div>
       
      
       <div class="border-b py-2 mt-3 flex justify-between">
-        <p class="text-cust-green font-semibold text-4xl">22</p>
-        <p>Image</p>
+        <p class="text-cust-green font-semibold text-4xl">{{weather.temp_max}} °C</p>
+        <p><img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="icon not found"></p>
     </div>
   
 
     <div class="border-b py-2 mt-3 flex justify-between">
         <p class="text-cust-green font-semibold">Max Temperature</p>
-        <p>Date</p>
+        <p>{{weather.temp_max}} °C</p>
     </div>
 
     <div class="border-b py-2 mt-3 flex justify-between">
         <p class="text-cust-green font-semibold">Min Temperature</p>
-        <p>Date</p>
+        <p>{{weather.temp_min}} °C</p>
     </div>
-
+  
     <div class="border-b py-2 mt-3 flex justify-between">
         <p class="text-cust-green font-semibold">Humidity</p>
-        <p>Date</p>
+        <p>{{weather.humidity}} %</p>
     </div>
 
 
@@ -47,12 +47,9 @@
     
        
     </div>
+</div>
   
-  
-   
-  
-  </div>
-  
+
   
   
   
