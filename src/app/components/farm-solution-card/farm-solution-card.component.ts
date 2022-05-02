@@ -14,7 +14,12 @@ export class FarmSolutionCardComponent implements OnInit {
 
   farmingSolution: FarmingSolution[] = [];
 
-  constructor(private farmS: FarmingSolutionService) { }
+  isAddOpen = false;
+  
+  farmId: string = "";
+
+  constructor(private farmS: FarmingSolutionService) {     
+  }
 
   ngOnInit(): void {
     this.getAllFarmingSolution();
@@ -70,4 +75,23 @@ export class FarmSolutionCardComponent implements OnInit {
       console.log("Error");
     })
   }
+
+  edit(id: any){
+    console.log("Edit id", id);
+    this.farmId = id;
+    let isOpen = false
+    this.isAddOpen = true;  
+  }
+
+  isAddToFalse(){
+    this.isAddOpen = false;
+    console.log("Thsi is cllaed", this.isAddOpen);
+    
+  }
+
+  myIsAdd(value: any){
+    console.log("My is add is cllaed");
+    
+  }
 }
+

@@ -7,17 +7,22 @@
 				class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
 				bg-gray-50 
 				>
-				Add
+				{{btnText}}
 			</button>
 		</div>
 
 		<div *ngIf="isAddOpen" >
 			<app-add-farming-solution></app-add-farming-solution>
 		</div>
-	
-		<app-farm-solution-card></app-farm-solution-card>
 
+		<div *ngIf="!isAddOpen">
+			<app-farm-solution-card></app-farm-solution-card>
+		</div>
+	
+		<!--
+			Application edit
 		<app-edit-farming-solution></app-edit-farming-solution>
+		-->
 	</div>
 </div>
 

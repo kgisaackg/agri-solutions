@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FarmingSolution } from 'src/app/interface/farmingSolutions.interace';
 import { FarmingSolutionService } from 'src/app/services/farming-solution.service';
@@ -9,8 +9,13 @@ import Swal from 'sweetalert2';
   templateUrl: './edit-farming-solution.component.html',
   styleUrls: ['./edit-farming-solution.component.css']
 })
+
 export class EditFarmingSolutionComponent implements OnInit {
   isLoading: boolean = false;
+
+  @Input() farmId = '';
+
+  @Output() isAddToFalse = new EventEmitter<boolean>();
 
   user_id = localStorage.getItem("farmer_auth") as string;
 
@@ -23,11 +28,11 @@ export class EditFarmingSolutionComponent implements OnInit {
     date: new Date()
   };
   
-  farmId = "OWLgqciorXQN2sHAdQHF";
-  
   ngOnInit(): void {
     this.farmSolution.id = this.farmId;
-    //this.getFormSolutionById();
+    console.log("Edit id passed", this.farmSolution.id);
+    
+    this.getFormSolutionById();
   }
 
   editFarmingSolutionForm = this.formBuilder.group({
@@ -54,7 +59,9 @@ export class EditFarmingSolutionComponent implements OnInit {
     console.log("On submit", this.farmSolution);
     
     this.updateUserConfirmation(this.farmSolution);
+    this.close();
   }
+
 
   updateFormValues(farmSolution: any){
     this.title?.setValue(farmSolution.title);
@@ -119,6 +126,10 @@ export class EditFarmingSolutionComponent implements OnInit {
         this.updateFormValues(this.farmSolution)
       }
     })
+  }
+
+  close(){
+    this.isAddToFalse.emit(false)
   }
 
 }

@@ -16,6 +16,8 @@ export class FarmingSolutionComponent implements OnInit {
   };
 
   isAddOpen = false;
+
+  btnText = "Add"
   
   constructor() { }
 
@@ -25,6 +27,7 @@ export class FarmingSolutionComponent implements OnInit {
   //toggle add
   openAdd(){
     let isOpen = false
-    this.isAddOpen = this.isAddOpen == isOpen ? true : false;                
+    this.isAddOpen = this.isAddOpen == isOpen ? true : false;     
+    this.btnText = this.isAddOpen == isOpen ? "Add" : "View";             
   }
 }
