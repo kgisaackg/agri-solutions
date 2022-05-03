@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FarmingSolution } from '../interface/farmingSolutions.interace';
 
 @Injectable({
@@ -28,14 +30,16 @@ export class FarmingSolutionService {
   
   getAllFarmingSolution(){
     //db.collection('things').orderBy('createdAt').startAfter(today)
-    return this.afs.collection(this.tableName, ref => ref.orderBy("createdAt")).snapshotChanges();
+    return this.afs.collection(this.tableName, ref => ref.orderBy("createdAt", 'desc')).snapshotChanges();
   }
 
   deleteFarmingSolutionById(farmSolutionId: string){
    return this.afs.doc(`${this.tableName}/` + farmSolutionId).delete();
   }
 
-  getAllFarmingSolutionByUserId(){
-    
+  getAllFarmingSolutionByUserId(user_id: string){
+    return this.afs.collection(this.tableName, ref => ref.where('authour', "==", user_id)
+    .orderBy("createdAt", 'desc'))
+    .snapshotChanges();
   }
 }

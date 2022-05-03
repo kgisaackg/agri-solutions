@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FarmingSolution } from 'src/app/interface/farmingSolutions.interace';
 import { FarmingSolutionService } from 'src/app/services/farming-solution.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,16 +19,59 @@ export class FarmSolutionCardComponent implements OnInit {
   
   farmId: string = "";
 
-  constructor(private farmS: FarmingSolutionService) {     
+  user_id = localStorage.getItem("farmer_auth") as string;
+
+  constructor(private farmS: FarmingSolutionService, private userService: UserService) {     
   }
 
   ngOnInit(): void {
     this.getAllFarmingSolution();
+   // this.getAllFarmingSolutionOfUser();
   }
 
+  isAllFarmingSolution = true;
   getAllFarmingSolution(){
     this.isLoading = true;
+    this.isAllFarmingSolution = true;
     this.farmS.getAllFarmingSolution().subscribe({
+      next: (res: any) => {
+        this.farmingSolution = res.map ( (document:any)=>{
+          return {
+            id: document.payload.doc.id,
+            ...document.payload.doc.data() as any
+          }
+        })
+        this.isLoading = false;
+        console.log(this.farmingSolution);
+        
+        
+      },
+      error: (error: any) => {
+        this.isLoading = true;
+      }
+    })
+  }
+
+  user: any;
+  getUserById(id: string){
+    this.isLoading = true;
+    this.userService.getUserById(this.user_id)
+    .subscribe({
+      next: (res: any) => {
+        this.user = res.data();
+        this.isLoading = false;
+      },
+      error: (error) => {
+         alert(error.message);
+         this.isLoading = false;
+      }
+    });
+  }
+  
+  getAllFarmingSolutionOfUser(){
+    this.isLoading = true;
+    this.isAllFarmingSolution = false;
+    this.farmS.getAllFarmingSolutionByUserId(this.user_id).subscribe({
       next: (res: any) => {
         this.farmingSolution = res.map ( (document:any)=>{
           return {
@@ -37,16 +81,13 @@ export class FarmSolutionCardComponent implements OnInit {
         });
         this.isLoading = false;
         console.log(this.farmingSolution);
-        
       },
       error: (error: any) => {
-        this.isLoading = true;
+        this.isLoading = false;
+        console.log(error);
+        
       }
     })
-  }
-
-  getAllFarmingSolutionOfUser(){
-
   }
   
   delete(id:any){
@@ -93,5 +134,6 @@ export class FarmSolutionCardComponent implements OnInit {
     console.log("My is add is cllaed");
     
   }
+
 }
 

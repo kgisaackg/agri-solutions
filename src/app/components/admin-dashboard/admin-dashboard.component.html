@@ -6,10 +6,10 @@
       <p class="text-white text-2xl mt-2">AgriSolutions</p>
       <ul class="mt-4">
         <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
-          <a class="text-white hover:underline  mb-2" routerLink="admin-home">Dashboard</a>
+          <a class="text-white  mb-2 w-full p-1 rounded cust-link" routerLink="admin-home"  routerLinkActive="active">Dashboard</a>
         </li>
-        <li class="flex w-full justify-between cursor-pointer items-center mb-2">  
-          <a class="text-white hover:underline  mb-2" routerLink="admin-users">Users</a>
+        <li class="flex w-full justify-between cursor-pointer items-center mb-2 ">  
+          <a class="text-white  mb-2 w-full p-1 rounded cust-link" routerLink="admin-users"  routerLinkActive="active">Users</a>
         </li>
       </ul>
       
@@ -19,7 +19,7 @@
   <!--Icon for drop down-->
   <div [ngClass]="'w-64 z-40 absolute min-h-screen bg-cust-green-200 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out ' + (isMenu ? 'transform translate-x-0' : 'transform -translate-x-full')">
     <div class="h-10 w-10 bg-gray-800 absolute right-0 mt-2 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer" (click)="isMenuBtn()">
-     sfsd
+    
     </div>
     <div [ngClass]="(isMenu ? 'block' : 'hidden') + ' h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white'" (click)="isMenuBtn()">
       close
@@ -48,11 +48,36 @@
   
   <!-- Sidebar ends -->
   <!-- Remove class [ h-64 ] when adding a card block -->
-  <div class="container mx-auto py-4 h-64 md:w-4/5 w-11/12 px-6">
+  <div class="container mx-auto h-64 md:w-4/5 w-11/12">
     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
     <div class="w-full h-full">
       <!-- Place your content here -->
-      <router-outlet></router-outlet>
+      <div class="bg-cust-green-200 w-full flex justify-between py-3">
+        <div class="text-cust-green-200" >x</div>
+        <div class="flex-none">
+            <div class="dropdown dropdown-end flex-end px-4">
+                <div tabindex="0" class="cursor-pointer ml-1">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="20" height="20" fill="url(#pattern0)"/>
+                        <defs>
+                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <use xlink:href="#image0_19_20" transform="scale(0.0111111)"/>
+                        </pattern>
+                        <image id="image0_19_20" width="90" height="90" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVR4nO3aL28UQRzG8RJKoRUkWCA4DH0DranGocHw5w3wFhAVBMKhcTRpk2pQfQkNAgeiDlHC/wRBKoAvYlc0pXe3O/PM7Mzd80nO3u/3m+zuzHO3CwtmZmZmZmZmZmZmZmZmZmZmZmY2T4AlYAT8aD/PgeWh+8oNWG5n/96uwwhYUhYY8b83wFVZkcIBV9qZT3qmLPL1lAIAH4F1WaFCAWvA4Zg1+KIsNMkR8EBWrDDAbeDXpAVQFuviBXBOVnRgwFngcZfBlUW72gMuyQoPBLgIvOo6tLJwHwfAqqx4ZsB14F2fgZXF+/oJ3JI1kAlwk+bY1ouygRB/gUfAGVkjCQEPgd8hgyqb+BC42AA7FBxuaELITsR835TNbEY0AoWGG8aHkD42lQ0tAtuRDR1SULhhcgjpahtYTNFc8HOsVUS4Ae4wJYRMkX7/IXBnPmGQcEOPEDJBvhMVzVnzfWTDWcMNTQh5HdnzAXAjV8/qxpOHGwJCyCmGS71UcCuie9TpN72AYYrcXNBs3veVPUVDc1zaBVYEvZwHXkb28hnYUKyNHHAZ2I8c8C1wreYesgAuAFuRgwZdTRR0V2VD5nBDoftEFmQIN1Rw8smChOGGWkNIKsIFWT32ndWl0ywQ3uLMUghJBbhHs9GF+tN+Qh0Bd4dehyzQHMNClBtCUkETLPooP4SkgibcdFFXCEmF+HAzTr0hJBU0J4nj6g8hqaA5G8MshZBUiA83sxdCUiE83Mx2CEmF7r/IlfdPSG2YHm7mL4SkwvhwM78hJBWalxGftlfwJ+AJBb88aWZmZmZmZmZmZmZmZmZmZmZ1+AfFHX1x+fxXRQAAAABJRU5ErkJggg=="/>
+                        </defs>
+                    </svg> 
+                </div>    
+                <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4 text-black">
+                  <li><a routerLink="profile">Admin@gmail.com</a></li> 
+                  <li><a (click)="logOut()">Logout</a></li>
+                </ul>  
+            </div>
+        </div>
+      </div>
+      <div class="px-4">
+
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

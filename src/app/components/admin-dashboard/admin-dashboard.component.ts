@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,8 +13,13 @@ export class AdminDashboardComponent implements OnInit {
   isMenuBtn() {
     this.isMenu = !this.isMenu;
   }
+
   isSearch: boolean = false;
-  constructor() {}
+  
+  constructor(private router: Router) {}
   ngOnInit(): void {}
+
+  logOut(){
+  }
 
 }

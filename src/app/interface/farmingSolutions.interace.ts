@@ -3,5 +3,5 @@ export interface FarmingSolution{
     title: string;
     description: string;
     authour: string;
-    date: Date;
+    date: any;
 }

@@ -15,7 +15,7 @@ import { WeatherUpdatesComponent } from './components/weather-updates/weather-up
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 const routes: Routes = [
- // {path: "landing", component: LandingPageComponent},
+  //{path: "landing", component: LandingPageComponent},
   {path: "", component: SigninComponent},
   {path: "signin", component: SigninComponent},
   {path: "signup", component: SignupComponent},

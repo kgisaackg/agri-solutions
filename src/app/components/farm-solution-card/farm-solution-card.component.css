@@ -1,0 +1,8 @@
+.line{
+    text-decoration: underline #8AA584;
+    text-decoration-thickness: 3px;
+}
+
+.noLine{
+    text-decoration: none;
+}

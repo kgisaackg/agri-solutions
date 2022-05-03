@@ -14,6 +14,7 @@ export class AddFarmingSolutionComponent implements OnInit {
   isLoading: boolean = false;
 
   user_id = localStorage.getItem("farmer_auth") as string;
+  user_email = localStorage.getItem("farmer_email") as string;
 
   constructor(private formBuilder: FormBuilder, private fmsService: FarmingSolutionService) { }
 
@@ -21,8 +22,14 @@ export class AddFarmingSolutionComponent implements OnInit {
     title: '',
     description: '',
     authour: 'Unknown',
-    date: new Date()
+    date: this.transformDate()
   };
+
+  transformDate(){
+    let date = new Date();
+    const month = date.toLocaleString('default', { month: 'long' });
+    return date.getDate() + " " + month + " "+ date.getFullYear()
+  }
   
   addFarmingSolutionForm = this.formBuilder.group({
     title: ['', Validators.required],
@@ -31,14 +38,16 @@ export class AddFarmingSolutionComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    console.log("Date", this.transformDate());
+    
   }
 
   onSubmit(){
     this.isLoading = true;
     this.farmSolution = {
       ...this.addFarmingSolutionForm.value,
-      authour: this.user_id,
-      date: new Date(),
+      authour: this.user_email,
+      date: this.transformDate(),
       demo: new Date().getTime()
     }
   //  this.addFarmingSolution();

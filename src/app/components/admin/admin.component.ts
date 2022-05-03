@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { IsloadingService } from 'src/app/services/isloading.service';
 
 @Component({
   selector: 'app-admin',
@@ -22,14 +23,14 @@ export class AdminComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService,  public isloader: IsloadingService) {}
 
   ngOnInit(): void {}
 
   signInForm = this.formBuilder.group({
     emailAddress: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    //role: [this.roles[3], Validators.required],
+    //role: [this.roles[3], Validators.required], console.log("Called in user.emaill address");
   });
   
   get emailAddress() {

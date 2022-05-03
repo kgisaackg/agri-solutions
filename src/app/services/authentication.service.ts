@@ -6,7 +6,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
+import { Router, UrlSegment } from '@angular/router';
 
 import { getAuth, deleteUser } from "firebase/auth";
 import { IsloadingService } from './isloading.service';
@@ -40,22 +40,35 @@ export class AuthenticationService {
       });
   }
 
+  signInAdmin(user: any){
+    if(user.role == "admin")
+      this.signIn(user);
+    else{
+      this.errorAlert("invalid user credentials.")
+    }
+  }
+
   signIn(user: any){
     this.isLoadingService.isLoading.next(true);
+
+    
     this.afAuth.signInWithEmailAndPassword(user.emailAddress, user.password)
     .then((value:any)  => {
       //the below is a hack it has to be handled propery
 
-      if(user.emailAddress != "admin@gmail.com" ){
-
+      if(user.role !== "admin"){
         localStorage.setItem('farmer_auth', value.user.uid) 
-        this.router.navigateByUrl('/farmer-home');     
-      }else if(user.emailAddress == "admin@gmail.com"){
+        console.log(value.user);
         
+        localStorage.setItem('farmer_email', value.user.email) 
+        this.router.navigateByUrl('/farmer-home');   
+
+      }else if(user.emailAddress == "admin@gmail.com" && user.role == "admin"){  
         localStorage.setItem('admin_auth', value.user.uid)
         this.router.navigateByUrl('/admin-dashboard');
       }else{
-        //incase of error
+        this.myError();
+        
       }
       this.isLoadingService.isLoading.next(false);
 
@@ -84,6 +97,7 @@ export class AuthenticationService {
     console.log("Myuser", user);
 
     localStorage.setItem('farmer_auth', id)
+    localStorage.setItem('farmer_email', user.emailAddress) 
     this.router.navigateByUrl('/farmer-home');
     
     const userData = {
@@ -131,6 +145,17 @@ export class AuthenticationService {
     //this.isLoadingService.isLoading.next(false)
     Swal.fire({
       text: cust[0],
+      color: '#FF0000',
+      showConfirmButton: false,
+      showCloseButton: true,
+      padding: '2px',
+      timer: 2500
+    })
+  }
+
+  myError(){
+    Swal.fire({
+      text: "The password is invalid or the user does not have a password",
       color: '#FF0000',
       showConfirmButton: false,
       showCloseButton: true,
