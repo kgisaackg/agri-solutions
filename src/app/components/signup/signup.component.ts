@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
       [Validators.required, Validators.pattern('(((0[6-8]))([0-9]{8}))')],
     ], //^(((0[6-8]))([0-9]{8})) OR ((\\+27))[6-8][0-9]{8}
     emailAddress: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.pattern('(?=.*[a-zA-Z])(?=.*[0-9]).{6,}')]],
     role: [this.roles[3], Validators.required],
   });
 

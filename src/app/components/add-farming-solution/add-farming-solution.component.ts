@@ -47,8 +47,8 @@ export class AddFarmingSolutionComponent implements OnInit {
     this.farmSolution = {
       ...this.addFarmingSolutionForm.value,
       authour: this.user_email,
-      date: this.transformDate(),
-      demo: new Date().getTime()
+      user_id: this.user_id,
+      date: this.transformDate()
     }
   //  this.addFarmingSolution();
 

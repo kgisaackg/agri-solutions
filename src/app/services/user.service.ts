@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient, private afs: AngularFirestore) { }
 
-  tableName = 'users'
+  tableName = 'user'
 
   updateUser(user: User){
     return this.afs.doc(`${this.tableName}/` + user.uid).update(user);

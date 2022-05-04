@@ -11,7 +11,7 @@ export class FarmingSolutionService {
 
   constructor(private afs: AngularFirestore) { }
 
-  tableName = 'farming'
+  tableName = 'farmer_board'
 
   addFarmingSolution(farmSolution: FarmingSolution){
     let timeStamp = new Date().getTime();
@@ -38,7 +38,7 @@ export class FarmingSolutionService {
   }
 
   getAllFarmingSolutionByUserId(user_id: string){
-    return this.afs.collection(this.tableName, ref => ref.where('authour', "==", user_id)
+    return this.afs.collection(this.tableName, ref => ref.where('user_id', "==", user_id)
     .orderBy("createdAt", 'desc'))
     .snapshotChanges();
   }

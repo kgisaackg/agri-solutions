@@ -4,4 +4,5 @@ export interface FarmingSolution{
     description: string;
     authour: string;
     date: any;
+    user_id?: string;
 }

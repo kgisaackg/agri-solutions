@@ -91,7 +91,7 @@ export class AuthenticationService {
   createUser(user: any, id: any) {
     
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${id}`
+      `user/${id}`
     );
 
     console.log("Myuser", user);
