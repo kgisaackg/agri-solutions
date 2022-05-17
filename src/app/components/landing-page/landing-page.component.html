@@ -1,51 +1,4 @@
 
-    <!--Navigation One-->
-<div class="navbar bg-base-100 bg-cust-green text-white">
-    <div class="navbar-start">
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-ghost lg:hidden px-0 py-0">
-           <img   width="24" height="24" src="../../../assets/icons/hamburgermenu.svg" alt="immm" srcset="">
-                
-        </label>
-        <!--Mobile View Menu-->
-        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52  text-black">
-          <li><a routerLink="chats">Chats</a></li>
-          <li><a routerLink="weather-updates">Weather Updates</a></li>
-          <li><a routerLink="farmsolutions">Farming Solution</a></li>
-        </ul>
-        <!--Mobile view Menu-->
-
-      </div>
-      <a routerLink="chats" class="btn btn-ghost normal-case">AgriSolutions</a>
-    </div>
-    <!--Non Mobile View Menu-->
-    <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal p-0">
-        <li><a >About Us</a></li>
-        <li><a routerLink="weather-updates">Services</a></li>
-        <li><a routerLink="farmsolutions">Farming Solution</a></li>
-      </ul>
-    </div>
-      <!--Non Mobile View Menu-->routerLink="weather-updates"
-
-    <div class="navbar-end">
-      
-      <a
-      href="#"
-      class=" px-7 py-3 bg-white text-black font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out  md:block"
-      >Sign In</a
-    >
-    <a
-    href="#"
-    class="ml-4 px-7 py-3 bg-white  text-black font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out md:block"
-    >Sign Up</a
-  >
-       
-    </div>
-  </div>
-
-       <!--/***Navigation One-->
-
     <!-- Navbar -->
     <nav class="relative container mx-auto p-6">
       <!-- Flex container -->
@@ -56,11 +9,9 @@
         </div>
         <!-- Menu Items -->
         <div class="hidden space-x-6 md:flex">
-          <a href="#" class="hover:text-darkGrayishBlue">Pricing</a>
-          <a href="#" class="hover:text-darkGrayishBlue">Product</a>
           <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
-          <a href="#" class="hover:text-darkGrayishBlue">Careers</a>
-          <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Services</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Professionals</a>
         </div>
         <!-- Button -->
         <div class="flex gap-4">
@@ -82,9 +33,9 @@
           id="menu-btn"
           class="block hamburger md:hidden focus:outline-none"
         >
-          <span class="hamburger-top"></span>
-          <span class="hamburger-middle"></span>
-          <span class="hamburger-bottom"></span>
+          <span class="hamburger-top">..</span>
+          <span class="hamburger-middle">..</span>
+          <span class="hamburger-bottom">..</span>
         </button>
       </div>
 
@@ -94,28 +45,30 @@
           id="menu"
           class="absolute flex-col items-center hidden self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
         >
-          <a href="#">Pricing</a>
-          <a href="#">Product</a>
-          <a href="#">About Us</a>
-          <a href="#">Careers</a>
-          <a href="#">Community</a>
+        <div class="hidden space-x-6 md:flex">
+          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Services</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Professionals</a>
+        </div>>
         </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero">
+    <section id="hero " >
       <!-- Flex Container -->
       <div
-        class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row"
+        class="container min-h-screen flex items-center px-6 mx-auto space-y-0 md:space-y-0 md:flex-row bg-cover bg-center text-white"
+        
+        style="background-image: url(../../../assets/image/farm.jpg)"
       >
-        <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
+        <div class="my-10 space-y-12 md:w-1/2">
           <h1
-            class="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left"
+            class="mtext-4xl font-bold text-center md:text-5xl md:text-left"
           >
             Bring everyone together to make farming easier.
           </h1>
-          <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
+          <p class="text-center text-darkGrayishBlue md:text-left">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis illum voluptates dicta odio ea quaerat eos eveniet, beatae placeat. Voluptates, incidunt possimus.
             
           </p>
@@ -127,10 +80,6 @@
           >
           </div>
         </div>
-        <!-- Image -->
-        <div class="md:w-1/2">
-          <img src="img/illustration-intro.svg" alt="" />
-        </div>
       </div>
     </section>
 
@@ -138,14 +87,14 @@
     <section id="features">
       <!-- Flex container -->
       <div
-        class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row"
+        class="container flex gap-8 flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row"
       >
         <!-- What's Different -->
         <div class="flex flex-col space-y-12 md:w-1/2">
-          <h2 class="max-w-md text-4xl font-bold text-center md:text-left">
+          <h2 class="text-4xl font-bold text-center md:text-left">
             How does Agri solution work?
           </h2>
-          <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
+          <p class="text-center text-darkGrayishBlue md:text-left">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, voluptatibus optio assumenda reprehenderit aliquid, alias, accusamus debitis at sunt maxime perferendis.
           </p>
         </div>
@@ -157,10 +106,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full  md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2  rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2  rounded-full md:py-1 bg-cust-green text-white"
                 >
                   01
                 </div>
@@ -185,10 +134,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full  md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2  rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2  rounded-full md:py-1 bg-cust-green text-white"
                 >
                   02
                 </div>
@@ -213,10 +162,10 @@
             class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
           >
             <!-- Heading -->
-            <div class="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div class="rounded-l-full md:bg-transparent">
               <div class="flex items-center space-x-2">
                 <div
-                  class="px-4 py-2  rounded-full md:py-1 bg-brightRed"
+                  class="px-4 py-2  rounded-full md:py-1 bg-cust-green text-white"
                 >
                   03
                 </div>
