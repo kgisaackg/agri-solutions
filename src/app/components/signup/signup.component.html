@@ -139,7 +139,31 @@
           </small>
        </div>
 
-         
+        <!-- Confirm Password input -->
+        <div class="mt-6">
+          <input
+            type="password"
+             class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
+            placeholder="confirmPassword"
+            formControlName="confirmPassword"
+          />
+        </div>
+        <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" 
+        class="text-red-500">
+        <small *ngIf="confirmPassword?.errors?.['required']">
+          *Password is required.
+        </small>
+
+      </div>
+    <div>
+      <small  class="mb-2 text-red-500" *ngIf="signUpForm?.errors || !confirmPassword?.errors?.['required']"> 
+        *Password's don't match.
+      </small>
+    </div>
+      
+  
+
+     
 
           <!-- Submit button -->
           <button

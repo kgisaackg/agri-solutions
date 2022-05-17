@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsloadingService } from 'src/app/services/isloading.service';
 import { User } from '../../interface/user.interface';
@@ -28,9 +33,21 @@ export class SignupComponent implements OnInit {
     role: '',
   };
 
-  isLoading: boolean = false;
   
-  constructor(private router: Router, private formBuilder: FormBuilder, private auth: AuthenticationService, public isloader: IsloadingService) {}
+
+  isLoading: boolean = false;
+
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private auth: AuthenticationService,
+    public isloader: IsloadingService
+  ) {
+     this.signUpForm.addValidators(
+      this.matchValidator(this.signUpForm.get('confirmPassword') as any, this.signUpForm.get('password') as any)
+    );
+  
+  }
 
   ngOnInit(): void {}
 
@@ -56,9 +73,17 @@ export class SignupComponent implements OnInit {
       [Validators.required, Validators.pattern('(((0[6-8]))([0-9]{8}))')],
     ], //^(((0[6-8]))([0-9]{8})) OR ((\\+27))[6-8][0-9]{8}
     emailAddress: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.pattern('(?=.*[a-zA-Z])(?=.*[0-9]).{6,}')]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('(?=.*[a-zA-Z])(?=.*[0-9]).{6,}'),
+      ],
+    ],
     role: [this.roles[3], Validators.required],
-  });
+    confirmPassword: ['', Validators.required],
+  },);
+
 
   get firstname() {
     return this.signUpForm.get('firstname');
@@ -84,8 +109,24 @@ export class SignupComponent implements OnInit {
     return this.signUpForm.get('role');
   }
 
+  get confirmPassword() {
+    return this.signUpForm.get('confirmPassword');
+  }
+
   errorMsg: string = '';
 
+  matchValidator(
+    control: AbstractControl,
+    controlTwo: AbstractControl
+  ): any {
+    console.log();
+    
+    return () => {
+      if (control.value !== controlTwo.value)
+        return {'': 'Value does not match' };
+      return null;
+    };
+  }
 
   onSubmit() {
     this.user = {
@@ -98,10 +139,9 @@ export class SignupComponent implements OnInit {
     };
 
     this.isLoading = true;
-    this.auth.signUp(this.user).then(
-      () => this.isLoading = false
-    ).finally(
-      () => this.isLoading  = false
-    );
+    this.auth
+      .signUp(this.user)
+      .then(() => (this.isLoading = false))
+      .finally(() => (this.isLoading = false));
   }
 }
