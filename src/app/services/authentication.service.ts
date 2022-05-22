@@ -135,8 +135,31 @@ export class AuthenticationService {
         localStorage.setItem('user', "null");
       }
     });
-
     
+  }
+
+  resetLink(email: any){
+    this.isLoadingService.isLoading.next(true);
+
+    this.afAuth.sendPasswordResetEmail(email).then(
+      () => {
+        this.success("Reset link has been sent to your email.")
+      },
+      err => {
+        this.errorAlert(err)
+        console.log("Reset Link Error", err)
+      }).then(() => this.isLoadingService.isLoading.next(false));
+  }
+
+  resetPassword(code: string, password: string){
+    this.isLoadingService.isLoading.next(true);
+    
+    this.afAuth.confirmPasswordReset(code, password)
+    .then(() => this.success('Password has been changed'))
+    .catch(err => {
+      this.errorAlert(err);
+      console.log("Reset Error", err)
+    }).then(() => this.isLoadingService.isLoading.next(false));
   }
 
   errorAlert(err: any){
@@ -164,4 +187,14 @@ export class AuthenticationService {
     })
   }
 
+  success(msg: string){
+    Swal.fire({
+      text: msg,
+      color: '#000000',
+      showConfirmButton: false,
+      showCloseButton: true,
+      padding: '2px',
+      timer: 2500
+    })
+  }
 }

@@ -13,12 +13,16 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { WeatherUpdatesComponent } from './components/weather-updates/weather-updates.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   {path: "landing", component: LandingPageComponent},
   {path: "", component: SigninComponent},
   {path: "signin", component: SigninComponent},
   {path: "signup", component: SignupComponent},
+  {path: "forgotpassword", component: ForgotPasswordComponent},
+  {path: "resetpassword", component: ResetPasswordComponent},
   {path: "farmer-home", component: FarmerHomeComponent, children:[
 
     {path: "", component: ChatsComponent},
