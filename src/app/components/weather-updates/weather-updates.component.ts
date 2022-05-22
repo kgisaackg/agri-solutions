@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { IsloadingService } from 'src/app/services/isloading.service';
 import { WeatherCallService } from 'src/app/services/weather-call.service';
 
 @Component({
@@ -8,7 +11,9 @@ import { WeatherCallService } from 'src/app/services/weather-call.service';
 })
 export class WeatherUpdatesComponent implements OnInit {
 
-  constructor(private weatherApi: WeatherCallService) { }
+  constructor(private weatherApi: WeatherCallService, 
+    private formBuilder: FormBuilder, private auth: AuthenticationService,  public isloader: IsloadingService
+    ) { }
 
   apikey = "";
 
@@ -34,6 +39,27 @@ export class WeatherUpdatesComponent implements OnInit {
     
     )
     
+  }
+
+  user: any;
+
+  isLoading: boolean = false;
+
+  cityForm = this.formBuilder.group({
+    city: ['', Validators.required],
+  });
+  
+  get city() {
+    return this.cityForm.get('city');
+  }
+
+  errorMsg: string = '';
+  
+  loaderActive: boolean = false;
+
+  onSubmit() { 
+    let city = this.cityForm.value.city;
+    console.log("City", city);
   }
 
 }

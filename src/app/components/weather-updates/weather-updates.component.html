@@ -11,6 +11,7 @@
     >
       Add City 
     </button>
+    <label for="my-modal-4" class="border-0 btn bg-cust-green modal-button">Add City</label>
   
     </div>
       <div class="border-b py-2 mt-3 flex justify-between">
@@ -49,6 +50,54 @@
     </div>
 </div>
   
+
+<!-- The button to open modal -->
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+<div for="my-modal-4" class="modal cursor-pointer">
+
+  <div class="modal-box relative px-2" for="">
+    <div class="flex justify-end mb-1 ">
+      <label for="my-modal-4" class="bg-cust-green rounded-full px-1.5 py-0.5 text-white">X</label>
+    </div>
+    <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+      <div  *ngIf="isloader.isLoading | async" class="flex justify-center">
+        <div class="loader absolute mt-20"></div>
+      </div>
+     
+      <!-- City input -->
+      <div class="">
+          <input
+            type="text"
+            class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
+            placeholder="Enter farm city"
+            formControlName="city"
+          />
+        </div>
+        <div *ngIf="city?.invalid && (city?.dirty || city?.touched)" 
+          class="mb-2 text-red-500">
+          <small *ngIf="city?.errors?.['required']">
+            *City is required.
+          </small>
+    
+       </div>
+    
+      <!-- Submit button -->
+      <button
+        type="submit"
+        class="w-full px-7 mt-6 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
+        [disabled]="!cityForm.valid"
+        [ngClass]="!cityForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
+      >
+        Submit
+      </button>
+               
+    </form>
+  </div>
+</div>
+
+
 
   
   
