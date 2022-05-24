@@ -15,7 +15,10 @@ export class WeatherService {
   }
  
   updateWeather(weather: Weather){
-    return this.afs.doc(`${this.tableName}/` + weather.id).update(weather);
+    let id = weather.id;
+    delete weather.id ;
+    
+    return this.afs.doc(`${this.tableName}/` + id).update(weather);
   }
   
   getWeatherByUserId(user_id: string){

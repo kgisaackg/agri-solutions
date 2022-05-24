@@ -1,3 +1,6 @@
+<div  *ngIf="isWeatherLoading" class="flex justify-center ">
+  <div class="loader absolute my-auto mt-20"></div>
+</div>
 <div class="min-h-full">
     <div class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
        <div class="flex justify-between my-5">
@@ -51,14 +54,12 @@
 <div for="my-modal-4" class="modal cursor-pointer">
 
   <div class="modal-box relative px-2" for="">
-    <div  *ngIf="isLoading" class="flex justify-center">
-      <div class="loader absolute mt-10"></div>
-    </div>
+    
     <div class="flex justify-end mb-1 ">
       <label for="my-modal-4" class="bg-cust-green rounded-full px-1.5 py-0.5 text-white">X</label>
     </div>
     <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
-      <div  *ngIf="isloader.isLoading | async" class="flex justify-center">
+      <div  *ngIf="isLoading" class="flex justify-center">
         <div class="loader absolute mt-20"></div>
       </div>
      

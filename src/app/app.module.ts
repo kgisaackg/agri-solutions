@@ -39,6 +39,7 @@ import { FarmSolutionCardComponent } from './components/farm-solution-card/farm-
 import { EditFarmingSolutionComponent } from './components/edit-farming-solution/edit-farming-solution.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -79,6 +80,7 @@ const firebaseConfig = {
     EditFarmingSolutionComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    NotFoundComponent,
    // FilterPipe
   ],
   imports: [

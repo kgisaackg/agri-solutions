@@ -15,6 +15,7 @@ import { WeatherUpdatesComponent } from './components/weather-updates/weather-up
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {path: "landing", component: LandingPageComponent},
@@ -33,15 +34,15 @@ const routes: Routes = [
     {path: "farmsolutions", component: FarmingSolutionComponent },
    
   ]},
-  
   {path: "admin", component: AdminComponent},
   {path: "admin-dashboard", component: AdminDashboardComponent, children:
-    [
-      {path: "", component: AdminHomeComponent},
-      {path: "admin-home", component: AdminHomeComponent},
-      {path: "admin-users", component: AdminUsersComponent}
-    ]},
+  [
+    {path: "", component: AdminHomeComponent},
+    {path: "admin-home", component: AdminHomeComponent},
+    {path: "admin-users", component: AdminUsersComponent}
+  ]},
 
+  {path: "**", component: NotFoundComponent},
 ];
 
 @NgModule({

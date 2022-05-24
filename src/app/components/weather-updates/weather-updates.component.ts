@@ -14,8 +14,13 @@ import Swal from 'sweetalert2';
 })
 export class WeatherUpdatesComponent implements OnInit {
   mycity = 'soShanGuve';
-  
+
   user_id = localStorage.getItem("farmer_auth") as string;
+
+  isUserLocationNew = true;
+
+  isWeatherLoading = false;
+  weatherId: string = '';
 
   constructor(
     private weatherApi: WeatherCallService,
@@ -36,14 +41,7 @@ export class WeatherUpdatesComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.weatherApi.getWeatherByCity(this.mycity).subscribe((res: any) => {
-      this.weather = {
-        ...res.main,
-        ...res.weather[0],
-        city: res.name,
-      };
-      console.log('http://openweathermap.org/img/w/', this.weather);
-    });
+    this.getWeatherByUserId();
   }
 
   user: any;
@@ -60,8 +58,6 @@ export class WeatherUpdatesComponent implements OnInit {
 
   errorMsg: string = '';
 
-  loaderActive: boolean = true;
-
   onSubmit() {
     this.mycity = this.cityForm.value.city;
     console.log('City', this.mycity);
@@ -69,28 +65,57 @@ export class WeatherUpdatesComponent implements OnInit {
     let myWeather: Weather = {
       user_id: this.user_id,
       location: this.mycity,
-      notification: false
-    }
+      notification: false,
+    };
+    if (this.isUserLocationNew) this.setWeatherByUserId(myWeather);
+    else{
+      myWeather = {...myWeather, id: this.weatherId}
+       this.updateWeatherByUserId(myWeather)
+    };
+  }
 
-    this.setWeatherByUserId(myWeather);
+  getWeatherByCity() {
+    this.weatherApi.getWeatherByCity(this.mycity).subscribe((res: any) => {
+      this.weather = {
+        ...res.main,
+        ...res.weather[0],
+        city: res.name,
+      };
+      console.log('http://openweathermap.org/img/w/', this.weather);
+    });
   }
 
  
   getWeatherByUserId() {
-    this.isLoading = true;
+    this.isWeatherLoading = true;
     this.weatherService.getWeatherByUserId(this.user_id).subscribe({
       next: (res: any) => {
-        console.log(res.data());
-        this.isLoading = false;
+        let theWeather = res.map((document: any) => {
+          return {
+            id: document.payload.doc.id,
+            ...(document.payload.doc.data() as any),
+          };
+        });
+
+        this.isUserLocationNew = theWeather.length == 0;
+        if (!this.isUserLocationNew) {
+          this.mycity = theWeather[0].location;
+          this.weatherId = theWeather[0].id
+          this.city?.setValue(this.mycity);
+        }
+
+        this.getWeatherByCity();
+
+        this.isWeatherLoading = false;
       },
       error: (error) => {
         Swal.fire('', 'Server error');
-        this.isLoading = false;
+        this.isWeatherLoading = false;
       },
     });
   }
 
-  upWeatherByUserId(weather: Weather) {
+  updateWeatherByUserId(weather: Weather) {
     this.isLoading = true;
     this.weatherService
       .updateWeather(weather)
@@ -106,21 +131,17 @@ export class WeatherUpdatesComponent implements OnInit {
   }
 
   setWeatherByUserId(myWeather: Weather) {
-    this.weatherService.addWeather(myWeather)
-    .then(() => {
-      Swal.fire(
-        '',
-        'Success'
-      )
-      this.isLoading = false
-    })
-    .catch( () => {
-      Swal.fire(
-        '',
-        'Server error'
-      )
-       this.isLoading = false;
-    }).finally( () => {
-    })
+    this.isLoading = true;
+    this.weatherService
+      .addWeather(myWeather)
+      .then(() => {
+        Swal.fire('', 'Success');
+        this.isLoading = false;
+      })
+      .catch(() => {
+        Swal.fire('', 'Server error');
+        this.isLoading = false;
+      })
+      .finally(() => {});
   }
 }
