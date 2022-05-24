@@ -1,71 +1,48 @@
 <!-- Navbar -->
 <nav class="relative mx-auto px-6 py-3.5 bg-gray-100">
   <!-- Flex container -->
-  <div class="flex items-center justify-between">
+  <div class="flex container mx-auto items-center justify-between">
     <!-- Logo -->
     <div class="pt-2 text-cust-green-200 font-bold text-2xl">AgriSolutions</div>
-    <!-- Menu Items -->
-    <div class="hidden space-x-6 md:flex">
-      <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
-      <a href="#" class="hover:text-darkGrayishBlue">Services</a>
-      <a href="#" class="hover:text-darkGrayishBlue">Professionals</a>
-    </div>
+    
     <!-- Button -->
     <div class="flex gap-4">
       <a
-        href="#"
-        class="px-7 py-3 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out hidden md:block"
+      routerLink="/signin"
+        class="p-2 md:px-7 md:py-3 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
         >Sign In</a
       >
       <a
-        href="#"
-        class="px-7 py-3 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out hidden md:block"
+      routerLink="/signup"
+        class="p-2 md:px-7 md:py-3 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
         >Sign Up</a
       >
     </div>
 
-    <!-- Hamburger Icon -->
-    <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
-      <span class="hamburger-top">..</span>
-      <span class="hamburger-middle">..</span>
-      <span class="hamburger-bottom">..</span>
-    </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="md:hidden">
-    <div
-      id="menu"
-      class="absolute flex-col items-center hidden self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
-    >
-      <div class="hidden space-x-6 md:flex">
-        <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
-        <a href="#" class="hover:text-darkGrayishBlue">Services</a>
-        <a href="#" class="hover:text-darkGrayishBlue">Professionals</a>
-      </div>
-      >
-    </div>
-  </div>
+  
 </nav>
 
 <!-- Hero Section -->
 <section id="hero">
   <!-- Flex Container -->
   <div
-    class="bg-[url('assets/image/farm.jpg')] hero-pattern min-h-screen flex items-center px-6 mx-auto space-y-0 md:space-y-0 md:flex-row bg-cover bg-center text-white bg-gradient-to-r from-cust-green to-blue-500"
+    class="hero min-h-screen flex items-center px-6 mx-auto space-y-0 md:space-y-0 md:flex-row bg-cover bg-center text-white "
   >
-    <div class="my-10 space-y-12 md:w-1/2">
-      <h1 class="mtext-4xl font-bold text-center md:text-5xl md:text-left">
+    <div class="my-10 container mx-auto space-y-12">
+      <h1 class="text-4xl font-bold text-center md:text-6xl md:text-left  md:w-1/2">
         Bring everyone together to make farming easier.
       </h1>
-      <p class="text-center text-darkGrayishBlue md:text-left">
+      <p class="text-center text-darkGrayishBlue md:text-left text-xl  md:w-1/2">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis illum
         voluptates dicta odio ea quaerat eos eveniet, beatae placeat.
         Voluptates, incidunt possimus.
       </p>
       <div class="flex justify-center md:justify-start">
         <a
-          href="#"
+        routerLink="/signin"
           class="px-7 py-3 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out md:block"
           >Get Started</a
         >
@@ -81,11 +58,11 @@
     class="container flex gap-8 flex-col px-4 mx-auto py-10 md:space-y-0 md:flex-row "
   >
     <!-- What's Different -->
-    <div class="flex flex-col space-y-12 md:w-1/2">
-      <h2 class="text-4xl font-bold text-center md:text-left">
+    <div class="flex flex-col space-y-8 md:w-1/2 my-auto">
+      <h2 class="text-2xl md:text-4xl font-bold ">
         How does Agri solution work?
       </h2>
-      <p class="text-center text-darkGrayishBlue md:text-left">
+      <p class="text-darkGrayishBlue md:text-left">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
         voluptatibus optio assumenda reprehenderit aliquid, alias, accusamus
         debitis at sunt maxime perferendis.
@@ -187,9 +164,9 @@
 <!-- Testimonials -->
 <section id="testimonials">
   <!-- Container to heading and testm blocks -->
-  <div class="mx-auto py-32 text-center container px-4">
+  <div class="mx-auto py-6 md:py-32 text-center container px-4">
     <!-- Heading -->
-    <h2 class="text-4xl font-bold text-center">Services and tools offered</h2>
+    <h2 class="text-2xl md:text-4xl font-bold text-center">Services and tools offered</h2>
 
     <!--Service offered-->
     <div class="mx-auto lg:flex justify-center gap-x-16 text-center">
@@ -245,7 +222,7 @@
     <!-- Button -->
     <div class="">
       <a
-        href="#"
+        routerLink="/signin"
         class="inline-block no-wrap px-7 py-3 bg-white font-medium text-sm uppercase rounded shadow-md hover:shadow-lg focus:bg-white-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white-400 active:shadow-lg"
         >Get Started</a
       >
