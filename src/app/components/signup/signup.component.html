@@ -10,7 +10,7 @@
       </div>
       <div class="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
         <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-          <p class="text-2xl">Welcome to AgriSolutions</p>
+          <p class="text-2xl">Welcome to <a class="text-cust-green" routerLink="/landing">AgriSolutions</a></p>
           <p class="my-5 text-xl">Sign Up</p>
           <div class="mb-2 text-red-500">
             {{errorMsg}} 
@@ -21,7 +21,7 @@
          
 
             <div class="flex justify-between items-center gap-4">
-                <div class="mt-6">
+                <div class="">
                     <input
                       type="text"
                       class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none"
@@ -35,7 +35,7 @@
                     </div>
            
                   </div>
-                  <div class="mt-6">                      
+                  <div class="">                      
                     <input
                       type="text"
                       class="form-control block w-full px-4 py-1 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0  focus:bg-white focus:border-cust-green focus:outline-none"
@@ -168,14 +168,14 @@
           <!-- Submit button -->
           <button
             type="submit"
-            class="mt-6 px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
+            class="w-full mt-6 px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
             [disabled]="!signUpForm.valid"
             [ngClass]="!signUpForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
           >
             Sign Up
           </button>
 
-              <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+              <p class="text-sm font-semibold mt-2 pt-1 mb-0 text-center">
                 Already have an account?
                 <a
                   routerLink="/signin"

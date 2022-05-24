@@ -3,15 +3,8 @@
        <div class="flex justify-between my-5">
       <p class="text-xl">Weather Report</p>
      
-      <button
-      type="submit"
-      
-      class=" px-7 py-2 bg-cust-green text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cust-green-200 hover:shadow-lg focus:bg-cust-green-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cust-green-200 active:shadow-lg transition duration-150 ease-in-out"
-      bg-gray-50 
-    >
-      Add City 
-    </button>
-    <label for="my-modal-4" class="border-0 btn bg-cust-green modal-button">Add City</label>
+     
+    <label for="my-modal-4" class="cursor-pointer border-0 px-7 py-2 rounded text-white bg-cust-green modal-button">Add City</label>
   
     </div>
       <div class="border-b py-2 mt-3 flex justify-between">
@@ -58,6 +51,9 @@
 <div for="my-modal-4" class="modal cursor-pointer">
 
   <div class="modal-box relative px-2" for="">
+    <div  *ngIf="isLoading" class="flex justify-center">
+      <div class="loader absolute mt-10"></div>
+    </div>
     <div class="flex justify-end mb-1 ">
       <label for="my-modal-4" class="bg-cust-green rounded-full px-1.5 py-0.5 text-white">X</label>
     </div>

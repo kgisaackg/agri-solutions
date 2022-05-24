@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { weather } from '../interface/weather.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +12,7 @@ export class WeatherCallService {
   constructor(private http: HttpClient) { }
 
   getWeatherByCity(city: string): any{
-    let value =`${this.baseUrl}q=soshanguve${this.apiId}&units=metric`;
-    let g = value as unknown as weather;
-    console.log("Service has been clalled", g);
-    
-
-    return this.http.get<weather>(value);
+    let value =`${this.baseUrl}q=${city}${this.apiId}&units=metric`;
+    return this.http.get<any>(value);
   }
 }

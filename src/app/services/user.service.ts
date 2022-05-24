@@ -17,7 +17,6 @@ export class UserService {
   }
 
   getUserById(userId: string){
-    
     return this.afs.collection(this.tableName).doc(userId).get();
   }
 

@@ -1,8 +1,7 @@
-export interface weather{
+export interface Weather{
     user_id: string;
-    uid?: string;
+    id?: string;
     location: string;
-    date: Date;
    // temperature: string;
     notification: boolean;
 }
