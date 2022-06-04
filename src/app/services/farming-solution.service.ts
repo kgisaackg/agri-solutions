@@ -11,7 +11,7 @@ export class FarmingSolutionService {
 
   constructor(private afs: AngularFirestore) { }
 
-  tableName = 'farmer_board'
+  tableName = 'information_board'
 
   addFarmingSolution(farmSolution: FarmingSolution){
     let timeStamp = new Date().getTime();
@@ -19,9 +19,10 @@ export class FarmingSolutionService {
   }
 
   updateFarmingSolution(farmSolution: FarmingSolution){
-    console.log(farmSolution);
-    
-    return this.afs.doc(`${this.tableName}/` + farmSolution.id).update(farmSolution);
+    let id = farmSolution.id;
+    delete farmSolution.id;
+
+    return this.afs.doc(`${this.tableName}/` + id).update(farmSolution);
   }
 
   getFarmingSolutionById(farmSolutionId: string){

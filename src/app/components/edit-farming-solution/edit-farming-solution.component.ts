@@ -18,6 +18,7 @@ export class EditFarmingSolutionComponent implements OnInit {
   @Output() isAddToFalse = new EventEmitter<boolean>();
 
   user_id = localStorage.getItem("farmer_auth") as string;
+  user_email = localStorage.getItem("farmer_email") as string;
 
   constructor(private formBuilder: FormBuilder, private fmsService: FarmingSolutionService) { }
 
@@ -47,13 +48,21 @@ export class EditFarmingSolutionComponent implements OnInit {
   onSubmit(){
     
     console.log(this.farmSolution.id);
+
+    // this.farmSolution = {
+    //   ...this.addFarmingSolutionForm.value,
+    //   authour: this.user_email,
+    //   user_id: this.user_id,
+    //   date: this.transformDate()
+    // }
     
+    //Old one have to be changed to match the one in add farming solutions
     this.farmSolution = {
       id: this.farmId,
       ...this.editFarmingSolutionForm.value,
-      authour: this.user_id,
-      date: new Date(),
-      demo: new Date().getTime()
+      authour: this.user_email,
+      user_id: this.user_id,
+      date: this.transformDate()
     }
   
     console.log("On submit", this.farmSolution);
@@ -62,6 +71,12 @@ export class EditFarmingSolutionComponent implements OnInit {
     this.close();
   }
 
+  //Formate date to be in dd Month Year
+  transformDate(){
+    let date = new Date();
+    const month = date.toLocaleString('default', { month: 'long' });
+    return date.getDate() + " " + month + " "+ date.getFullYear()
+  }
 
   updateFormValues(farmSolution: any){
     this.title?.setValue(farmSolution.title);

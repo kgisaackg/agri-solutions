@@ -2,25 +2,25 @@
   <div class="loader absolute my-auto mt-20"></div>
 </div>
 <div class="min-h-full">
-    <div class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
-       <div class="flex justify-between my-5">
-      <p class="text-xl">Weather Report</p>
-     
-     
-    <label for="my-modal-4" class="cursor-pointer border-0 px-7 py-2 rounded text-white bg-cust-green modal-button">Add City</label>
-  
+  <div class="w-full md:w-8/12 lg:w-5/12 px-4 pb-7 pt-2">
+    <div class="flex justify-between my-5">
+    <p class="text-xl">Weather Report</p>
+    
+      <label for="my-modal-4" class="cursor-pointer border-0 px-7 py-2 rounded text-white bg-cust-green modal-button">Add City</label>
     </div>
-      <div class="border-b py-2 mt-3 flex justify-between">
-          <p class="text-cust-green font-semibold">City</p>
-          <p>{{weather.city}}</p>
-      </div>
-      
-     
-      <div class="border-b py-2 mt-3 flex justify-between">
-        <p class="text-cust-green font-semibold text-4xl">{{weather.temp_max}} °C</p>
-        <p><img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="icon not found"></p>
+
+    <div *ngIf="!isFound" class="text-center">There is no weather for city</div>
+    <div *ngIf="isFound">
+    <div class="border-b py-2 mt-3 flex justify-between">
+        <p class="text-cust-green font-semibold">City</p>
+        <p>{{weather.city}}</p>
     </div>
-  
+    
+    
+    <div class="border-b py-2 mt-3 flex justify-between">
+      <p class="text-cust-green font-semibold text-4xl">{{weather.temp_max}} °C</p>
+      <p><img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="icon not found"></p>
+    </div>
 
     <div class="border-b py-2 mt-3 flex justify-between">
         <p class="text-cust-green font-semibold">Max Temperature</p>
@@ -36,14 +36,11 @@
         <p class="text-cust-green font-semibold">Humidity</p>
         <p>{{weather.humidity}} %</p>
     </div>
-
-
   
-      <p class="mt-4"></p>
-     
+    <p class="mt-4"></p>
+  </div>
     
-       
-    </div>
+  </div>
 </div>
   
 

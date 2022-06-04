@@ -18,15 +18,15 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
+  {path: "", component: LandingPageComponent},
   {path: "landing", component: LandingPageComponent},
-  {path: "", component: SigninComponent},
   {path: "signin", component: SigninComponent},
   {path: "signup", component: SignupComponent},
   {path: "forgotpassword", component: ForgotPasswordComponent},
   {path: "resetpassword", component: ResetPasswordComponent},
   {path: "farmer-home", component: FarmerHomeComponent, children:[
 
-    {path: "", component: ChatsComponent},
+    {path: "", component: FarmingSolutionComponent},
     {path: "chats", component: ChatsComponent },
     {path: "profile", component: ProfileComponent},
     {path: "profile-update", component: ProfileUpdateComponent},

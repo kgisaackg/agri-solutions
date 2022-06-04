@@ -74,18 +74,23 @@ export class WeatherUpdatesComponent implements OnInit {
     };
   }
 
+  isFound = true;
   getWeatherByCity() {
+    console.log("fsafds af a");
+    
     this.weatherApi.getWeatherByCity(this.mycity).subscribe((res: any) => {
       this.weather = {
         ...res.main,
         ...res.weather[0],
         city: res.name,
       };
-      console.log('http://openweathermap.org/img/w/', this.weather);
+      this.isFound = true;
+    }, (error:any) => {
+      this.isFound = false;
+      console.log(error.error.message);
     });
   }
 
- 
   getWeatherByUserId() {
     this.isWeatherLoading = true;
     this.weatherService.getWeatherByUserId(this.user_id).subscribe({
@@ -120,6 +125,9 @@ export class WeatherUpdatesComponent implements OnInit {
     this.weatherService
       .updateWeather(weather)
       .then((res: any) => {
+        console.log("This is the called updated.")
+        this.getWeatherByCity();
+
         this.isLoading = false;
       })
       .catch((error: any) => {
