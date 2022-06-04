@@ -156,7 +156,7 @@
 
       </div>
     <div>
-      <small  class="mb-2 text-red-500" *ngIf="signUpForm?.errors || !confirmPassword?.errors?.['required']"> 
+      <small  class="mb-2 text-red-500" *ngIf="signUpForm?.errors?.['passwordMatch']"> 
         *Password's don't match.
       </small>
     </div>

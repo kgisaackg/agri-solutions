@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { IsloadingService } from 'src/app/services/isloading.service';
@@ -20,17 +20,21 @@ export class ResetPasswordComponent implements OnInit {
     private auth: AuthenticationService,
     public isloader: IsloadingService
   ) {
-    this.signInForm.addValidators(
-      this.matchValidator(this.signInForm.get('confirmPassword') as any, this.signInForm.get('password') as any)
-    );
+    
   }
 
   ngOnInit(): void {}
 
+  passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+    return password && confirmPassword && password.value !== confirmPassword.value ? { passwordMatch: true } : null;
+  };
+
   signInForm = this.formBuilder.group({
     confirmPassword: ['', Validators.required],
-    password: ['', Validators.required],
-  });
+    password: ['', [Validators.required, Validators.pattern('(?=.*[a-zA-Z])(?=.*[0-9]).{6,}'),]],
+  },{validators: this.passwordMatchValidator });
 
   get confirmPassword() {
     return this.signInForm.get('confirmPassword');
@@ -44,15 +48,6 @@ export class ResetPasswordComponent implements OnInit {
 
   loaderActive: boolean = false;
 
-  matchValidator(control: AbstractControl, controlTwo: AbstractControl): any {
-    console.log();
-    return () => {
-      if (control.value !== controlTwo.value)
-        return { '': 'Value does not match' };
-      return null;
-    };
-  }
-
   onSubmit() {
     const code = this.router.snapshot.queryParams['oobCode'];
     this.user = {
@@ -63,4 +58,6 @@ export class ResetPasswordComponent implements OnInit {
     console.log('Reset Password', this.user);
     this.auth.resetPassword(code, this.user.password);
   }
+
+
 }
