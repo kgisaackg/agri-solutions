@@ -1,3 +1,42 @@
-<section class="min-h-screen flex align-center justify-center items-center items-center">
-    <h1 class="text-center text-4xl">Chats Coming Soon!</h1>
+<section class="max-h-[90%]">
+    <div class="pt-6 flex flex-col px-8" *ngFor="let msg of messages">
+        <div *ngIf="'CZ0A3irdhTNs4PpLwt4zOCXUGej1' == msg.user_id" class="bg-cust-green self-start p-1 rounded">
+            {{msg.message}}
+        </div>
+       <div  *ngIf=" 'CZ0A3irdhTNs4PpLwt4zOCXUGej1' !== msg.user_id" class="bg-opacity-green self-end p-1 rounded">
+           {{msg.user_id}} |||| {{'CZ0A3irdhTNs4PpLwt4zOCXUGej1' }}
+       </div>
+    </div>
+
+<div  *ngIf="isLoading" class="flex justify-center">
+	<div class="loader absolute mt-20"></div>
+  </div>
+    <form class="fixed bottom-0 left-0 right-0 mt-3 px-8 py-2 flex items-center"[formGroup]="chatForm" (ngSubmit)="onSubmit()">
+        <textarea
+            class="
+                form-control
+                block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                m-0
+                bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:border-cust-green focus:outline-none
+            "
+            id="exampleFormControlTextarea1"
+            rows="2"
+            placeholder="Add your farming knowledge"
+            formControlName="message"
+        ></textarea>
+        <button
+            type="submit"
+            [disabled]="!chatForm.valid"
+            [ngClass]="!chatForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
+            class="ml-2 mt-2 px-7 py-2 bg-opacity-green text-white font-medium text-sm uppercase rounded shadow-md"
+          >
+           send
+        </button>
+    </form>
 </section>
