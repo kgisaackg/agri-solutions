@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChatsService } from 'src/app/services/chats.service';
 import Swal from 'sweetalert2';
+import { chats } from '../../interface/chats.interface';
 
 @Component({
   selector: 'app-chats',
@@ -10,12 +12,23 @@ import Swal from 'sweetalert2';
 })
 export class ChatsComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private chatService: ChatsService) { }
+  userObj: any;
+  toUser: string;
+  chattingTo: string;
 
-  //user_id = localStorage.getItem("farmer_auth") as string;
-  user_id = "CZ0A3irdhTNs4PpLwt4zOCXUGej1";
+  constructor(private formBuilder: FormBuilder, private chatService: ChatsService, 
+    private activatedRoute: ActivatedRoute, private router: Router) { 
+      this.userObj =  this.router.getCurrentNavigation()!.extras.state;
+      console.log("UserObj:", this.userObj.user)
+      this.toUser = this.userObj.user.uid;
+      this.chattingTo = this.userObj.user.firstname;
+    }
+
+  user_id = localStorage.getItem("farmer_auth") as string;
+  //user_id = "RJiUEeIeV6PjAWaHNIG5f0WSjlF2";
   user_email = localStorage.getItem("farmer_email") as string;
   recipient = '';
+
   isLoading:boolean = false;
   
   chatForm = this.formBuilder.group({
@@ -23,7 +36,6 @@ export class ChatsComponent implements OnInit {
   })
   
   ngOnInit(): void {
-    this.user_id = "CZ0A3irdhTNs4PpLwt4zOCXUGej1";
     this.getMessages();
   }
 
@@ -33,23 +45,11 @@ export class ChatsComponent implements OnInit {
     return date.getDate() + " " + month + " "+ date.getFullYear()
   }
 
-  messages: any[] = [{
-    user_id: this.user_id,
-    message: "loe odsjfloiw weio jsfdoifj qeor jweofj ow 0"
-  },
-  {user_id: '2',
-      message: "loe odsjfloiw weio jsfdoifj qeor jweofj ow 1"
-    },{
-    user_id: '3',
-    message: "loe odsjfloiw weio jsfdoifj qeor jweofj ow 3"
-    },{
-    user_id: this.user_id,
-    message: "loe odsjfloiw weio jsfdoifj qeor jweofj ow 2 "
-    },
-];
+  messages: chats[] = [];
+
   getMessages(){
     this.isLoading = true;
-    this.chatService.getMessagesForUserById("CZ0A3irdhTNs4PpLwt4zOCXUGej1", "RJiUEeIeV6PjAWaHNIG5f0WSjlF2")
+    this.chatService.getMessagesForUserById(this.user_id, this.toUser)
     .subscribe({
       next: (res: any) => {
         this.messages = res.map ( (document:any)=>{
@@ -68,13 +68,14 @@ export class ChatsComponent implements OnInit {
       }
     })
   }
+  
   onSubmit(){
     const chat = {
       status: 'null',
-      recipient: "RJiUEeIeV6PjAWaHNIG5f0WSjlF2", //this.recipient,
+      recipient: this.user_id + this.toUser, //this.recipient,
     ...this.chatForm.value,
       authour: this.user_email,
-      user_id: "CZ0A3irdhTNs4PpLwt4zOCXUGej1", //this.user_id,
+      user_id: this.user_id,
       date: this.transformDate()
     }
     
@@ -96,6 +97,10 @@ export class ChatsComponent implements OnInit {
     }).finally( () => {
        this.chatForm.reset();
     })
+  }
+
+  getUser(user: string){
+    return user.substring(0, 28);
   }
 
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
@@ -16,6 +16,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ChatListComponent } from './components/chat-list/chat-list.component';
 
 const routes: Routes = [
   {path: "", component: LandingPageComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: "resetpassword", component: ResetPasswordComponent},
   {path: "farmer-home", component: FarmerHomeComponent, children:[
 
-    {path: "", component: FarmingSolutionComponent},
+    {path: "", component: ChatListComponent},
+    {path: "chatlist", component: ChatListComponent},
     {path: "chats", component: ChatsComponent },
     {path: "profile", component: ProfileComponent},
     {path: "profile-update", component: ProfileUpdateComponent},

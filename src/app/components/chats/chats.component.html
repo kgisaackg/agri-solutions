@@ -1,10 +1,13 @@
 <section class="max-h-[90%]">
+    <p class="px-8 mt-2 flex"><a routerLink="../chatlist">
+        <img class="mr-2"  width="24" height="24" src="../../../assets/icons/backbtn.svg" alt="immm" srcset="">
+    </a>Chatting with {{chattingTo}}</p>
     <div class="pt-6 flex flex-col px-8" *ngFor="let msg of messages">
-        <div *ngIf="'CZ0A3irdhTNs4PpLwt4zOCXUGej1' == msg.user_id" class="bg-cust-green self-start p-1 rounded">
+        <div *ngIf="getUser(msg.recipient) == user_id" class="bg-cust-green self-start p-1 rounded">
             {{msg.message}}
         </div>
-       <div  *ngIf=" 'CZ0A3irdhTNs4PpLwt4zOCXUGej1' !== msg.user_id" class="bg-opacity-green self-end p-1 rounded">
-           {{msg.user_id}} |||| {{'CZ0A3irdhTNs4PpLwt4zOCXUGej1' }}
+       <div  *ngIf="getUser(msg.recipient) !== user_id" class="bg-opacity-green self-end p-1 rounded">
+           {{msg.message}}
        </div>
     </div>
 
@@ -35,7 +38,7 @@
             [disabled]="!chatForm.valid"
             [ngClass]="!chatForm.valid ? 'bg-opacity-green' : 'bg-cust-green-200' "
             class="ml-2 mt-2 px-7 py-2 bg-opacity-green text-white font-medium text-sm uppercase rounded shadow-md"
-          >
+        >
            send
         </button>
     </form>
