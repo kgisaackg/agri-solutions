@@ -6,7 +6,7 @@
     type="text"
     [(ngModel)]="searchText"
     class="form-control block px-4 py-0.5 text-xl font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded m-0 focus:bg-white focus:border-cust-green focus:outline-none"
-    placeholder="Search by firstname, lastname email"
+    placeholder="Search by firstname, lastname, role"
   />
     <div *ngIf="isLoading" class="flex justify-center">
         <div class="loader absolute mt-20"></div>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="py-0" *ngFor="let user of users |filter:searchText; let x = index" (click)="chatWith(user)">
+            <tr class="py-0 cursor-pointer" *ngFor="let user of users |filter:searchText; let x = index" (click)="chatWith(user)">
                 <td class="py-2">{{user.firstname}}</td>
                 <td class="py-2">{{user.lastname}}</td>
                 <td class="py-2">{{user.role}}</td>

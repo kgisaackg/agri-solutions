@@ -18,14 +18,13 @@ export class ChatsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private chatService: ChatsService, 
     private activatedRoute: ActivatedRoute, private router: Router) { 
+
       this.userObj =  this.router.getCurrentNavigation()!.extras.state;
-      console.log("UserObj:", this.userObj.user)
       this.toUser = this.userObj.user.uid;
       this.chattingTo = this.userObj.user.firstname;
     }
 
   user_id = localStorage.getItem("farmer_auth") as string;
-  //user_id = "RJiUEeIeV6PjAWaHNIG5f0WSjlF2";
   user_email = localStorage.getItem("farmer_email") as string;
   recipient = '';
 

@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChatListComponent implements OnInit {
 
- 
+  user_id = localStorage.getItem("farmer_auth") as string;
+
   constructor(private userService: UserService, private farmS: FarmingSolutionService,
     private router: Router) {
     this.getAllUsers();
@@ -39,9 +40,9 @@ export class ChatListComponent implements OnInit {
 
   getAllUsers(){
     this.isLoading = true;
-    this.userService.getAllUser().subscribe({
+    this.userService.getAllUsersOtherThanMe(this.user_id)
+    .subscribe({
       next: (res: any) => {
-        console.log("is clladed")
         this.users = res.map ( (document:any)=>{
           return {
             id: document.payload.doc.id,

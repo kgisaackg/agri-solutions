@@ -20,6 +20,11 @@ export class UserService {
     return this.afs.collection(this.tableName).doc(userId).get();
   }
 
+  getAllUsersOtherThanMe(userId: string){
+    return this.afs.collection(this.tableName, ref => ref.where('uid', "!=", userId))
+    .snapshotChanges();
+  }
+
   getAllUser(){
     return this.afs.collection(this.tableName).snapshotChanges();
   }
