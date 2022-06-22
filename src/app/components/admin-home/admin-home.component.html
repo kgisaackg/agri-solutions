@@ -2,24 +2,28 @@
     <p class="text-3xl">Dashboard</p>
     <div class="flex justify-between gap-4 mt-4 h-20">
         <div class="w-full bg-gray-100 rounded p-2">
-            <p class="text-2xl">
+            <div class="">
                 Users
-            </p>
-            <p class="mt-4"></p>
+            </div>
+            <p class="mt-4 text-2xl">{{numUser}}</p>
+            <p *ngIf="userIsLoading" class="spinner -mt-12 mx-auto"></p>
         </div>
         <div class="w-full bg-gray-100 rounded p-2">
-            <p class="text-2xl">
-               Farmer Board
+            <p class="">
+               Information Board
             </p>
-            <p class="mt-4"></p>
+            <p class="mt-4 text-2xl">{{numInformationBoard}}</p>
+            <p *ngIf="numInformationIsLoading"class="spinner -mt-12 mx-auto"></p>
         </div>
         <div class="w-full bg-gray-100 rounded p-2">
-            <p class="text-2xl">
+            <p class="">
                 Chats
             </p>
-            <p class="mt-4"></p>
+            <p class="mt-4 text-2xl">{{numOfChats}}</p>
+            <p *ngIf="chatIsLoading" class="spinner -mt-12 mx-auto"></p>
         </div>
     </div>
+    <app-report></app-report>
   
        
 </div>

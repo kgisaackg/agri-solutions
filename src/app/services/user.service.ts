@@ -32,4 +32,10 @@ export class UserService {
   deleteUserById(userId: string){
    return this.afs.doc(`${this.tableName}/` + userId).delete();
   }
+
+  getUsersByRole(role: string){
+    return this.afs.collection(this.tableName, ref => ref.where('role', "==", role))
+    .snapshotChanges();
+  }
+
 }

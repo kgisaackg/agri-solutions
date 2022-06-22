@@ -41,6 +41,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
+import { ReportComponent } from './components/report/report.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -83,6 +84,7 @@ const firebaseConfig = {
     ResetPasswordComponent,
     NotFoundComponent,
     ChatListComponent,
+    ReportComponent,
    // FilterPipe
   ],
   imports: [
